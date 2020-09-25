@@ -12,6 +12,9 @@ app.use(body_parser.urlencoded({limit: '50mb', extended: true}));
 
 app.use('/', express.static(path.resolve(__dirname + '/views/build/')));
 
+// conexión de base de datos
+require('./config/connectionDatabase');
+
 /*
 // api
 var api = require('./controllers/main');
