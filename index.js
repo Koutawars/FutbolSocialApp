@@ -14,6 +14,7 @@ app.use('/', express.static(path.resolve(__dirname + '/views/build/')));
 
 // conexión de base de datos
 require('./config/connectionDatabase');
+require('./models/bootstrap')();
 
 /*
 // api
