@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import { getJwt } from './../helpers/jwt'
+import { getJwt } from './../helpers/jwt'
 // import axios from 'axios';
 import { withRouter } from "react-router-dom";
 export default function (Componente){
@@ -13,13 +13,15 @@ export default function (Componente){
             }
         }
         componentDidMount() {
-            // const jwt = getJwt();
+            const jwt = getJwt();
+            /*
             const jwt = "XD";
             this.setState({
                 id: 1,
                 tipoId: 1,
                 nombre: "Administrador"
             });
+            */
 
             if(!jwt){
                 this.props.history.push('/login');

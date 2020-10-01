@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import React, {Component} from 'react';
 import logo from '../Images/Logo.png'
-
+import { getJwt } from './../helpers/jwt'
+    
 import { Container, Form, Button, Row, Col, Image} from 'react-bootstrap';  
 class Login extends Component {
     constructor(props){
@@ -21,6 +22,16 @@ class Login extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log("Correo: " + this.state.email + " Contraseña: " + this.state.password);
+        if(this.state.email === "admin@gmail.com" && this.state.password === "admin"){
+            localStorage.setItem('jwt', 'XD');
+            this.props.history.push('/');
+        }
+    }
+    
+    componentDidMount(){
+        if(getJwt()){
+            this.props.history.push('/');
+        }
     }
     render(){
         return (
