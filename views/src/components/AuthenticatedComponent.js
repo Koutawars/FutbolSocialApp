@@ -14,15 +14,6 @@ export default function (Componente){
         }
         componentDidMount() {
             const jwt = getJwt();
-            /*
-            const jwt = "XD";
-            this.setState({
-                id: 1,
-                tipoId: 1,
-                nombre: "Administrador"
-            });
-            */
-
             if(!jwt){
                 this.props.history.push('/login');
             }
