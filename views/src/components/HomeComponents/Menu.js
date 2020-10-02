@@ -3,14 +3,19 @@ import {NavLink, withRouter} from "react-router-dom"
 import { AiFillHome } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 
-// https://stackoverflow.com/questions/39235506/render-component-in-different-order-depending-on-screen-size-react
 class Menu extends Component {
     NavLinkComp(props){
+        let width = window.innerWidth;
+        let nombre = props.nombre;
+        let sizeToHideName = 993;
+        if(width < sizeToHideName){
+            nombre = "";
+        }
         return(
         <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" to={props.link}>
+            <NavLink className="nav-link" activeClassName="active" exact to={props.link}>
                 <h5>
-                    <props.icon/><span style={{"top": "4px", "left": "30px", "position": "relative"}}>{props.nombre}</span>
+                    <props.icon/><span style={{"top": "4px", "left": "30px", "position": "relative"}}>{nombre}</span>
                 </h5>
             </NavLink>
         </li>);

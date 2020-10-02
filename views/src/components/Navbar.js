@@ -18,7 +18,7 @@ class NavbarComp extends Component {
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Buscar" className="mr-sm-2" />
-                        <Button variant="outline-success">Buscar</Button>
+                        <Button className="mr-sm-2" variant="outline-success">Buscar</Button>
                         <Nav.Link className="text-danger" onClick = {this.logOut}><AiOutlineLogout/></Nav.Link>
                     </Form>
 

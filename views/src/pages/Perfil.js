@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/HomeComponents/Menu'
 import Main from '../components/HomeComponents/Main'
-class Home extends Component {
+class Perfil extends Component {
     render(){
         return (
             <React.Fragment>
@@ -24,4 +24,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Perfil;
