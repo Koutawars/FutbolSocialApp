@@ -2,19 +2,20 @@ import React, {Component} from 'react';
 import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/HomeComponents/Menu'
+import Main from '../components/HomeComponents/Main'
 class Home extends Component {
     render(){
         return (
             <React.Fragment>
                 <Navbar></Navbar>
                 <Row>
-                    <Col xs lg="3">
+                    <Col className="lex-xl-nowrap" xs="3" md="3" >
                         <Menu></Menu>
                     </Col>
-                    <Col xs lg="6">
-                        Hola
+                    <Col xs="9" md="5">
+                        <Main></Main>
                     </Col>
-                    <Col xs lg="3">
+                    <Col xs="0" md="4">
                         Hola
                     </Col>
                 </Row>
