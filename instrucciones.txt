@@ -2,3 +2,12 @@ Crear una migración con sequelize-cli:
 sequelize migration:generate --name "create_table_usuario"
 en caso de error "Unable to resolve sequelize package in C:\Users\NECSOFT\Documents\GitHub\FutbolSocialApp"
 npm install -g sequelize
+
+// crear una clase one a one  https://sequelize.org/master/manual/assocs.html
+Team.hasOne(Game, { as: 'HomeTeam', foreignKey: 'homeTeamId' });
+Team.hasOne(Game, { as: 'AwayTeam', foreignKey: 'awayTeamId' });
+Game.belongsTo(Team);
+
+// conexión de uno a muchos
+Usuario.hasMany(Grupo, { foreignKey: 'usuarioId'}); // Usuario conecta a grupo por la foreignKey de grupo
+Grupo.belongsTo(Usuario, { foreignKey: 'usuarioId'}); // reafirma que se conecta por su key con Usuario
