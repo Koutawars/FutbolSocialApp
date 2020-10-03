@@ -2,45 +2,42 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable("usuarios", {
+    return queryInterface.createTable("alquiler", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      correo: {
-        type: Sequelize.STRING,
+      fecha_inicio: {
+        type: Sequelize.DATE,
         allowNull: false
       },
-      password: {
-        type: Sequelize.STRING,
+      escenario_deportivo_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false
+      },
+      usuario_id: {
+        typr: Sequelize.INTEGER,
         allowNull: false
       },
-      cedula: {
+      fecha_final:{
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      precio:{
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      saldo: {
+      estado_alquiler_id:{
         type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      tipo_usuario_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      nombres: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      apellidos: {
-        type: Sequelize.STRING,
         allowNull: false
       }
+
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("usuarios");
+    return queryInterface.dropTable("alquiler");
   }
 };
