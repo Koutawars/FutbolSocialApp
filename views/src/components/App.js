@@ -4,12 +4,12 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 // Paginas
 import Login from '../pages/Login'
-import Registro from '../pages/Registro'
+import SignIn from '../pages/SignIn'
 import Home from '../pages/Home'
-import Perfil from '../pages/Perfil'
+import Profile from '../pages/Profile'
 
 // seguridad
-import Auth from './AuthenticatedComponent'
+import Auth from './SecurityComponents/AuthenticatedComponent'
 
 
 function App() {
@@ -17,9 +17,9 @@ function App() {
     <BrowserRouter>
         <Switch>
           <Route exact path={"/login"} component = {Login} ></Route>
-          <Route exact path={"/registrar"} component = {Registro} ></Route>
+          <Route exact path={"/registrar"} component = {SignIn} ></Route>
           <Route exact path={"/"} component = {Auth(Home)} ></Route>
-          <Route exact path={"/perfil"} component = {Auth(Perfil)} ></Route>
+          <Route exact path={"/perfil"} component = {Auth(Profile)} ></Route>
         </Switch>
     </BrowserRouter>
   );

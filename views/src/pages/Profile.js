@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
-import Menu from '../components/HomeComponents/Menu'
-import Main from '../components/HomeComponents/Main'
-class Perfil extends Component {
+import Menu from '../components/Menu'
+import Main from '../components/ProfileComponents/Main'
+class Profile extends Component {
     render(){
         return (
             <React.Fragment>
@@ -24,4 +24,4 @@ class Perfil extends Component {
     }
 }
 
-export default Perfil;
+export default Profile;

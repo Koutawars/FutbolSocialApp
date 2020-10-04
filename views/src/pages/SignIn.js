@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Form, Col, Button, Row, Container} from 'react-bootstrap';  
-class Registro extends Component {
+class SignIn extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -53,5 +53,5 @@ class Registro extends Component {
         );
     }
 }
-export default Registro;
+export default SignIn;
 

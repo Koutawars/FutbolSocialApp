@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
-import Menu from '../components/HomeComponents/Menu'
+import Menu from '../components/Menu'
 import Main from '../components/HomeComponents/Main'
 class Home extends Component {
     render(){
