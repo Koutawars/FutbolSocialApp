@@ -16,7 +16,7 @@ module.exports = sequelize.define("Alquiler", {
         allowNull:false
       },
       usuario_id: {
-        typr: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       fecha_final:{

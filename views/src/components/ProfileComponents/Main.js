@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Post from '../PostComponents/Post'
 import image from '../../Images/test.jpg'
 import {Row, Col} from 'react-bootstrap'
 import MakePost from '../PostComponents/MakePost';

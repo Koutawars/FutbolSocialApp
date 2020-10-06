@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable("alquiler", {
+    return queryInterface.createTable("alquileres", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -13,31 +13,30 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      escenario_deportivo_id:{
+      escenario_deportivo_id: {
         type: Sequelize.INTEGER,
         allowNull:false
       },
       usuario_id: {
-        typr: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
-      fecha_final:{
+      fecha_final: {
         type: Sequelize.DATE,
         allowNull: false
       },
-      precio:{
+      precio: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      estado_alquiler_id:{
+      estado_alquiler_id: {
         type: Sequelize.INTEGER,
         allowNull: false
       }
-
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("alquiler");
+    return queryInterface.dropTable("alquileres");
   }
 };

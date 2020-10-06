@@ -11,3 +11,10 @@ Game.belongsTo(Team);
 // conexión de uno a muchos
 Usuario.hasMany(Grupo, { foreignKey: 'usuarioId'}); // Usuario conecta a grupo por la foreignKey de grupo
 Grupo.belongsTo(Usuario, { foreignKey: 'usuarioId'}); // reafirma que se conecta por su key con Usuario
+
+// Crear base de dato (si no esta creada)
+sequelize db:create
+//Correr todas las migraciones
+sequelize db:migrate
+ // quitar todas las tablas
+sequelize db:migrate:undo:all

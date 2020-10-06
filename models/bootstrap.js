@@ -35,23 +35,36 @@ module.exports = async () => {
     Evento.hasMany(Post, {foreignKey: 'eventos_id'});
 
     Evento.hasMany(Usuario_has_evento, {foreignKey: 'eventos_id'});
+
     Post.hasMany(Comentario, {foreignKey: 'post_idpost'});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    var dateFake = true;
+    if(dateFake){
+        /*
+        var administrador = await Tipo_usuarios.create({tipo:"administrador"});
+        var userAdmin = await Usuario.create({
+            correo:"admin@gmail.com",
+            password: "admin",
+            cedula: 12345,
+            saldo: 999999,
+            tipo_usuario_id: administrador.id,
+            nombres: "Carlos Miguel",
+            apellidos: "Campo"
+        });
+        console.log(userAdmin);
+        */
+       let admis = await Tipo_usuarios.findAll({
+           where: {
+               id: 1
+           },
+           include: [
+               {
+                   model: Usuario
+               }
+           ]
+       });
+       console.log(admis[0].dataValues.Usuarios);
+    }
 
     const errHandler = (err) => {
         console.error("Error: ", err);

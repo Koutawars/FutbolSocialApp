@@ -7,6 +7,7 @@ import Login from '../pages/Login'
 import SignIn from '../pages/SignIn'
 import Home from '../pages/Home'
 import Profile from '../pages/Profile'
+import Fields from '../pages/Fields'
 
 // seguridad
 import Auth from './SecurityComponents/AuthenticatedComponent'
@@ -20,6 +21,7 @@ function App() {
           <Route exact path={"/registrar"} component = {SignIn} ></Route>
           <Route exact path={"/"} component = {Auth(Home)} ></Route>
           <Route exact path={"/perfil"} component = {Auth(Profile)} ></Route>
+          <Route exact path={"/canchas"} component = {Auth(Fields)} ></Route>
         </Switch>
     </BrowserRouter>
   );

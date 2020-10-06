@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {NavLink, withRouter} from "react-router-dom"
 import { AiFillHome } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
+import { GiFootyField } from "react-icons/gi";
+
 
 class Menu extends Component {
     NavLinkComp(props){
@@ -25,6 +27,7 @@ class Menu extends Component {
             <ul style={{"top":"60px"}} className="nav flex-column nav-pills sticky-top">
                 <this.NavLinkComp link="/" nombre="Inicio" icon={AiFillHome}></this.NavLinkComp>
                 <this.NavLinkComp link="/perfil" nombre="Perfil" icon={BsFillPersonFill}></this.NavLinkComp>
+                <this.NavLinkComp link="/canchas" nombre="Canchas" icon={GiFootyField}></this.NavLinkComp>
             </ul>
         );
     }
