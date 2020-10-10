@@ -4,7 +4,6 @@ import { AiFillHome } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiFootyField } from "react-icons/gi";
 
-
 class Menu extends Component {
     NavLinkComp(props){
         let width = window.innerWidth;
