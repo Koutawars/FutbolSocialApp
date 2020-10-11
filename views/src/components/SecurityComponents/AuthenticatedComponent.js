@@ -9,7 +9,8 @@ export default function (Componente){
             this.state = {
                 id: null,
                 tipoId: null,
-                nombre: null
+                nombres: null,
+                apellidos: null
             }
         }
         componentDidMount() {
@@ -17,6 +18,12 @@ export default function (Componente){
             if(!jwt){
                 this.props.history.push('/login');
             }
+            this.setState({
+                id: 1,
+                tipoId: 1,
+                nombres: "Carlos",
+                apellidos: "Campo Navarro"
+            });
 
             /*
             axios.post("http://" + window.location.hostname + ':5000/api/auth', {},

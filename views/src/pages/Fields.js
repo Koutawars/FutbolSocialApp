@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/Menu'
-import Main from '../components/HomeComponents/Main'
+import Main from '../components/FieldComponents/Main'
 class Fields extends Component {
     render(){
         return (
@@ -13,7 +13,7 @@ class Fields extends Component {
                         <Menu></Menu>
                     </Col>
                     <Col xs="10" sm="11" md="11" lg ="9">
-                        Canchas ~
+                        <Main {...this.props} />
                     </Col>
                 </Row>
             </React.Fragment>
