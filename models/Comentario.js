@@ -20,4 +20,8 @@ module.exports = sequelize.define("Comentario", {
         allowNull: false
 
     }
+},
+{
+    tableName: 'comentarios'
+    
 });

@@ -11,4 +11,7 @@ module.exports = sequelize.define("estado_alquiler", {
         type: Sequelize.STRING,
         allowNull: false
       }
+    },
+    {
+        tableName: 'estado_alquileres'
 });

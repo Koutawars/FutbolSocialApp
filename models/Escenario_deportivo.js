@@ -15,4 +15,7 @@ module.exports = sequelize.define("Escenario_deportivo", {
         type: Sequelize.INTEGER,
         allowNull:false
       }
+    },
+    {
+        tableName: 'escenarios_deportivos'
 });

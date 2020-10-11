@@ -24,4 +24,7 @@ module.exports = sequelize.define("Post", {
         type: Sequelize.INTEGER,
         allowNull : false
       }
+    },
+    {
+        tableName: 'posts'
 });

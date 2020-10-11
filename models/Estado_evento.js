@@ -11,4 +11,7 @@ module.exports = sequelize.define("Estado_evento", {
         type: Sequelize.STRING,
         allowNull: false
       }
+    },
+    {
+        tableName: 'estado_eventos'
 });

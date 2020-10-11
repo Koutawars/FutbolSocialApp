@@ -10,4 +10,7 @@ module.exports = sequelize.define("Usuario_has_evento", {
         type: Sequelize.INTEGER,
         allowNull: false
       }
+    },
+    {
+        tableName: 'usuarios_has_eventos'
 });

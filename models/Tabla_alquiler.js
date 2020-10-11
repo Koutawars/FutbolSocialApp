@@ -10,4 +10,7 @@ module.exports = sequelize.define("Tabla_alquiler", {
         type: Sequelize.INTEGER,
         allowNull: false
       }
+    },
+    {
+        tableName: 'tabla_alquileres'
 });

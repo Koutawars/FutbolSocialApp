@@ -24,4 +24,7 @@ module.exports = sequelize.define("Evento", {
         type: Sequelize.INTEGER,
         allowNull : false
       }
+    },
+    {
+        tableName: 'eventos'
 });
