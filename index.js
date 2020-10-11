@@ -16,11 +16,9 @@ app.use('/', express.static(path.resolve(__dirname + '/views/build/')));
 require('./config/connectionDatabase');
 require('./models/bootstrap')();
 
-/*
 // api
 var api = require('./controllers/main');
 app.use('/api', api);
-*/
 
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname + '/views/build/index.html'));

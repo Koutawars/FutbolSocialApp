@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Fields from './Fields'
 import {Row} from 'react-bootstrap'
-import {CONSTANT} from '../../helpers/constant'
+import CONSTANT from '../../helpers/constant'
 import AddField from './AddField';
 
 class Main extends Component {

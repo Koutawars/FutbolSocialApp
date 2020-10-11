@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import {Form, Col, Button, Row, Container} from 'react-bootstrap';  
+import {Form, Col, Button, Row, Container} from 'react-bootstrap'; 
+import axios from 'axios';
+import CONSTANT from '../helpers/constant'
 class SignIn extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: null,
+            correo: null,
             password: null,
             nombres: null,
-            apellidos: null
+            apellidos: null,
+            cedula: null
         };
     }
     handleChange = (e) => {
@@ -17,7 +20,12 @@ class SignIn extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        let url = CONSTANT.URL + "/api/register";
+        axios.post(url, this.state).then(res => {
+            this.props.history.push('/login');
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     render(){
@@ -27,7 +35,7 @@ class SignIn extends Component {
                     <Col xs lg="5">
                         <h4 className = "text-center">Registro</h4>
                         <Form onSubmit={this.handleSubmit}>
-                            <Form.Group controlId="email">
+                            <Form.Group controlId="correo">
                                 <Form.Label>Correo</Form.Label>
                                 <Form.Control onChange = {this.handleChange} type="email" placeholder="Correo" />
                             </Form.Group>
@@ -42,6 +50,10 @@ class SignIn extends Component {
                             <Form.Group controlId="apellidos">
                             <Form.Label>Apellidos</Form.Label>
                                 <Form.Control onChange = {this.handleChange} type="text" placeholder="Primer y segundo apellido" />
+                            </Form.Group>
+                            <Form.Group controlId="cedula">
+                            <Form.Label>Cédula</Form.Label>
+                                <Form.Control onChange = {this.handleChange} type="number" placeholder="Cédula" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Enviar

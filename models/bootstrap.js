@@ -52,7 +52,6 @@ module.exports = async () => {
             apellidos: "Campo"
         });
         console.log(userAdmin);
-        */
        let admis = await Tipo_usuarios.findAll({
            where: {
                id: 1
@@ -63,7 +62,7 @@ module.exports = async () => {
                }
            ]
        });
-       console.log(admis[0].dataValues.Usuarios);
+        */
     }
 
     const errHandler = (err) => {

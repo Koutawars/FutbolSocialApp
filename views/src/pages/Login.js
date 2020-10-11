@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom';
 import React, {Component} from 'react';
 import logo from '../Images/Logo.png'
 import { getJwt } from './../helpers/jwt'
+import axios from 'axios';
+import CONSTANT from '../helpers/constant'
+
     
 import { Container, Form, Button, Row, Col, Image} from 'react-bootstrap';  
 class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: null,
+            correo: null,
             password: null
         };
     }
@@ -21,11 +24,16 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Correo: " + this.state.email + " Contraseña: " + this.state.password);
-        if(this.state.email === "admin@gmail.com" && this.state.password === "admin"){
-            localStorage.setItem('jwt', 'XD');
+        let url = CONSTANT.URL + "/api/login";
+        axios.post(url,  {
+            correo: this.state.correo,
+            password: this.state.password
+        }).then(res => {
+            localStorage.setItem('jwt', res.data.jwt);
             this.props.history.push('/');
-        }
+        }).catch((err) => {
+            console.log("Correo o contraseña incorrectos");
+        });
     }
     
     componentDidMount(){
@@ -42,7 +50,7 @@ class Login extends Component {
                             <Image width="200px" src={logo} rounded />
                         </div>
                         <Form onSubmit={this.handleSubmit}>
-                            <Form.Group controlId="email">
+                            <Form.Group controlId="correo">
                                 <Form.Label>Correo</Form.Label>
                                 <Form.Control onChange = {this.handleChange} type="email" placeholder="Escribir correo" />
                                 <Form.Text className="text-muted">

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { getJwt } from '../../helpers/jwt'
-// import axios from 'axios';
+import axios from 'axios';
 import { withRouter } from "react-router-dom";
 export default function (Componente){
     class AuthenticatedComponent extends Component {
@@ -10,7 +10,8 @@ export default function (Componente){
                 id: null,
                 tipoId: null,
                 nombres: null,
-                apellidos: null
+                apellidos: null,
+                cedula: null
             }
         }
         componentDidMount() {
@@ -18,14 +19,6 @@ export default function (Componente){
             if(!jwt){
                 this.props.history.push('/login');
             }
-            this.setState({
-                id: 1,
-                tipoId: 1,
-                nombres: "Carlos",
-                apellidos: "Campo Navarro"
-            });
-
-            /*
             axios.post("http://" + window.location.hostname + ':5000/api/auth', {},
             {
                 headers: {
@@ -34,17 +27,12 @@ export default function (Componente){
                 }
             } )
             .then(res => {
-                this.setState({
-                    id: res.data.id,
-                    tipoId: res.data.tipoId,
-                    nombre: res.data.nombre
-                });
+                this.setState(res.data);
             }).catch(err => {
                 console.log(err);
                 localStorage.removeItem('jwt');
                 this.props.history.push('/login');
             });
-            */
         }
           
         render(){
