@@ -18,6 +18,10 @@ module.exports = sequelize.define("Escenario_deportivo", {
       valor_hora:{
         type: Sequelize.INTEGER,
         allowNull:false
+      },
+      usuario_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false
       }
     },
     {

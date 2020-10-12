@@ -20,7 +20,12 @@ module.exports = {
       valor_hora:{
         type: Sequelize.INTEGER,
         allowNull:false
+      },
+      usuario_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false
       }
+
     });
   },
 
