@@ -6,13 +6,16 @@ import { AiFillEdit } from "react-icons/ai";
 
 class Field extends Component {
     render(){
-        let trigger = () => {
+        let triggerEdit = () => {
             this.props.infoEdit(this.props);
+        }
+        let triggerDelete = () => {
+            this.props.handleDelete(this.props.id);
         }
         let botonAdmin = this.props.admin ? (
             <>
-                <Card.Link className="text-danger"><BsFillTrashFill/></Card.Link>
-                <Card.Link className="text-info"  onClick ={trigger}><AiFillEdit/></Card.Link>
+                <Card.Link className="text-danger" onClick= {triggerDelete}><BsFillTrashFill/></Card.Link>
+                <Card.Link className="text-info"  onClick ={triggerEdit}><AiFillEdit/></Card.Link>
             </>
         ):(
             <>

@@ -3,6 +3,10 @@ import {Form, Col, Button, Row, Container} from 'react-bootstrap';
 import axios from 'axios';
 import CONSTANT from '../helpers/constant'
 class SignIn extends Component {
+    
+    componentDidMount() {
+        document.title = "Registrarse";
+    }
     constructor(props){
         super(props);
         this.state = {
@@ -24,7 +28,7 @@ class SignIn extends Component {
         axios.post(url, this.state).then(res => {
             this.props.history.push('/login');
         }).catch((err) => {
-            console.log(err);
+            console.log(err.response.data.error);
         });
     }
 

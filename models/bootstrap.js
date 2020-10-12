@@ -41,7 +41,6 @@ module.exports = async () => {
 
     let dateFake = false;
     if(dateFake){
-        /*
         let administrador = await Tipo_usuarios.create({tipo:"administrador"});
         let userAdmin = await Usuario.create({
             correo:"admin@gmail.com",
@@ -62,7 +61,6 @@ module.exports = async () => {
             nombres: "Anderson",
             apellidos: "Hernandez"
         });
-        */
         let cancha = await Escenario_deportivo.create({
             nombre: "Cancha El Pando",
             descrip: "En la 34 con cra 13, hay computadores para jugar a futbol",

@@ -1,16 +1,30 @@
 import {Button, Modal, Form} from 'react-bootstrap'
 import React, { Component } from 'react';
+import axios from 'axios';
+import { getJwt } from '../../helpers/jwt';
+import CONSTANT from '../../helpers/constant'
 class EditField extends Component {
     constructor(props){
         super(props);
         this.state = {
             show: false,
-            id: props.info.id,
-            nombre: props.info.nombre,
-            descrip: props.info.descrip,
-            valor_hora: props.info.valor_hora
+            id: null,
+            nombre: null,
+            descrip: null,
+            valor_hora: null
         }
         this.props.handler(() => this.setState({...this.state, show:true}));
+    }
+    componentDidUpdate(prevProps){
+        if(this.props.info !== prevProps.info){
+            this.setState({
+                ...this.state, 
+                id: this.props.info.id,
+                nombre: this.props.info.nombre,
+                descrip: this.props.info.descrip,
+                valor_hora: this.props.info.valor_hora
+            });
+        }
     }
     handleChange = (e) => {
         this.setState({
@@ -19,9 +33,23 @@ class EditField extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state);
         if(this.state.nombre && this.state.descrip && this.state.valor_hora){
-            this.setState({...this.state, show:false});
-            this.props.update();
+            let url = CONSTANT.URL + "/api/admin/field/update/" + this.state.id;
+            const jwt = getJwt();
+            axios.put(url, this.state,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${jwt}`
+                    }
+                })
+            .then(res => {
+                this.setState({...this.state, show:false});
+                this.props.update();
+             }).catch(err => {
+                console.log(err);
+             });
         }
     }
     render(){

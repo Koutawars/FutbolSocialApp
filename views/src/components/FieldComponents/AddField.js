@@ -1,6 +1,10 @@
 import {Button, Modal, Form} from 'react-bootstrap'
 import { BiAddToQueue } from "react-icons/bi";
 import React, { Component } from 'react';
+import axios from 'axios';
+import { getJwt } from '../../helpers/jwt';
+import CONSTANT from '../../helpers/constant'
+
 class AddField extends Component {
     constructor(props){
         super(props);
@@ -8,7 +12,7 @@ class AddField extends Component {
             show: false,
             nombre: null,
             descrip: null,
-            precio: null
+            valor_hora: null
         }
     }
     handleChange = (e) => {
@@ -18,11 +22,24 @@ class AddField extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        if(this.state.nombre && this.state.descrip && this.state.precio){
-            this.setState({...this.state, show:false});
-            this.props.update();
+        if(this.state.nombre && this.state.descrip && this.state.valor_hora){
+            let url = CONSTANT.URL + "/api/admin/field/add";
+            const jwt = getJwt();
+            axios.post(url, this.state,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${jwt}`
+                    }
+                })
+            .then(res => {
+                console.log("DATA: ", res.data);
+                this.setState({...this.state, show:false});
+                this.props.update();
+             }).catch(err => {
+                console.log(err);
+             });
         }
-        
     }
     render(){
         const handleClose = () => this.setState({show:false});
@@ -48,7 +65,7 @@ class AddField extends Component {
                             <Form.Label>Descripción</Form.Label>
                             <Form.Control onChange = {this.handleChange} type="text" placeholder="Ingrese descripción de la cancha" />
                         </Form.Group>
-                        <Form.Group controlId="precio">
+                        <Form.Group controlId="valor_hora">
                             <Form.Label>Precio por hora</Form.Label>
                             <Form.Control onChange = {this.handleChange} type="number" placeholder="$ por hora" />
                         </Form.Group>

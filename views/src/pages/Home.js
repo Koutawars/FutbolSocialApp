@@ -4,6 +4,9 @@ import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/Menu'
 import Main from '../components/HomeComponents/Main'
 class Home extends Component {
+    componentDidMount() {
+        document.title = "Inicio";
+    }
     render(){
         return (
             <React.Fragment>

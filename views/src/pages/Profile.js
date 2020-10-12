@@ -4,6 +4,9 @@ import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/Menu'
 import Main from '../components/ProfileComponents/Main'
 class Profile extends Component {
+    componentDidMount() {
+        document.title = "Perfil";
+    }
     render(){
         return (
             <React.Fragment>

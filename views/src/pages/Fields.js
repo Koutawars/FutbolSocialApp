@@ -4,6 +4,9 @@ import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/Menu'
 import Main from '../components/FieldComponents/Main'
 class Fields extends Component {
+    componentDidMount() {
+        document.title = "Canchas";
+    }
     render(){
         return (
             <React.Fragment>

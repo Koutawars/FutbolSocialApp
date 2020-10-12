@@ -37,6 +37,7 @@ class Login extends Component {
     }
     
     componentDidMount(){
+        document.title = "Login";
         if(getJwt()){
             this.props.history.push('/');
         }

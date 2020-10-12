@@ -5,6 +5,8 @@ import CONSTANT from '../../helpers/constant'
 import AddField from './AddField';
 import EditField from './EditField'
 
+import { getJwt } from '../../helpers/jwt';
+import axios from 'axios';
 class Main extends Component {
     constructor(){
         super();
@@ -18,8 +20,8 @@ class Main extends Component {
             }
         }
     }
-    updateFields = () => {
-        this.setState({update:!this.state.update});
+    updateFields = async () => {
+        await this.setState({update:!this.state.update});
     }
 
     editFieldHandler = (editHandler) => {
@@ -35,6 +37,23 @@ class Main extends Component {
         });
         this.state.editHandler();
     }
+    
+    handleDelete = (id) => {
+        let url = CONSTANT.URL + "/api/admin/field/delete/" + id;
+        const jwt = getJwt();
+        axios.delete(url, 
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            }
+        })
+        .then(res => {
+            this.updateFields();
+        }).catch(err => {
+            console.log(err);
+        });
+    }
     render(){
         let botonAgregar = this.props.data.tipoId === CONSTANT.ADMIID? (
             <Row>
@@ -46,7 +65,7 @@ class Main extends Component {
             <div>
                 {botonAgregar}
                 <Row>
-                    <Fields {...this.props} infoEdit = {this.infoEdit} update = {this.state.update} />
+                    <Fields {...this.props} handleDelete = {this.handleDelete} infoEdit = {this.infoEdit} update = {this.state.update} />
                 </Row>
             </div>
         )

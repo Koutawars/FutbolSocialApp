@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Field from './Field'
-import {Col, Spinner} from 'react-bootstrap'
+import Field from './Field';
+import {Col, Spinner} from 'react-bootstrap';
 import CONSTANT from '../../helpers/constant'
 import { getJwt } from '../../helpers/jwt';
 import axios from 'axios';
@@ -9,14 +9,16 @@ class Fields extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fields: null
+            fields: null,
+            deleteId: null
         }
     }
     componentDidUpdate(prevProps){
-        if(this.props !== prevProps){
+        if(this.props.data !== prevProps.data || this.props.update !== prevProps.update){
             const jwt = getJwt();
             let admin = this.props.data.tipoId === CONSTANT.ADMIID;
             let url = CONSTANT.URL + ((admin) ?"/api/admin/field":"/api/user/getFields");
+            console.log(url);
             axios.get(url,
             {
                 headers: {
@@ -43,7 +45,7 @@ class Fields extends Component {
             } else {
                 renderListFields = fields.map((field) => 
                     <Col key = {field.id} className="pt-1" xs={4}>
-                        <Field {...field} infoEdit = {this.props.infoEdit} admin = {admin}/>
+                        <Field {...field} infoEdit = {this.props.infoEdit} handleDelete = {this.props.handleDelete} admin = {admin}/>
                     </Col>
                 );
             }

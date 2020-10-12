@@ -9,7 +9,8 @@ module.exports = sequelize.define("Usuario", {
   },
   correo: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   password: {
     type: Sequelize.STRING,
