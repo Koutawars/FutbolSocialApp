@@ -6,25 +6,28 @@ import { AiFillEdit } from "react-icons/ai";
 
 class Field extends Component {
     render(){
+        let trigger = () => {
+            this.props.infoEdit(this.props);
+        }
         let botonAdmin = this.props.admin ? (
             <>
-                <Card.Link className="text-danger" href="#"><BsFillTrashFill/></Card.Link>
-                <Card.Link className="text-info" href="#"><AiFillEdit/></Card.Link>
+                <Card.Link className="text-danger"><BsFillTrashFill/></Card.Link>
+                <Card.Link className="text-info"  onClick ={trigger}><AiFillEdit/></Card.Link>
             </>
         ):(
             <>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
+                <Card.Link href="#"></Card.Link>
+                <Card.Link href="#"></Card.Link>
             </>
         );
         return  (
             <Card>
                 <Card.Img variant="top" src={imagefield} />
                 <Card.Body>
-                    <Card.Title>Nombre de campo</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Estado del campo</Card.Subtitle>
+                <Card.Title>{this.props.nombre}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">${this.props.valor_hora}/hora</Card.Subtitle>
                     <Card.Text>
-                    Descripción del campo
+                        {this.props.descrip}
                     </Card.Text>
                     {botonAdmin}
                 </Card.Body>

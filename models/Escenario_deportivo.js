@@ -7,7 +7,11 @@ module.exports = sequelize.define("Escenario_deportivo", {
         autoIncrement: true,
         primaryKey: true
       },
-      lugar: {
+      nombre: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      descrip: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -17,5 +21,5 @@ module.exports = sequelize.define("Escenario_deportivo", {
       }
     },
     {
-        tableName: 'escenarios_deportivos'
+      tableName: 'escenarios_deportivos'
 });

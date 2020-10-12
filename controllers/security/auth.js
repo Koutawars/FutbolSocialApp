@@ -1,7 +1,8 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+const CONSTANT = require('../../config/constantServer');
 
 // middleware
-var auth = function (req, res, next) {
+const auth = function (req, res, next) {
     var token = req.headers['authorization'];
     if(!token){
         res.status(401).send({
@@ -10,7 +11,7 @@ var auth = function (req, res, next) {
         return
     }
     token = token.replace('Bearer ', '');
-    jwt.verify(token, 'Contraseña secreta', function(err, info) {
+    jwt.verify(token, CONSTANT.TOKENENCRIPTED, function(err, info) {
       if (err) {
         res.status(401).send({
           error: 'Token inválido'

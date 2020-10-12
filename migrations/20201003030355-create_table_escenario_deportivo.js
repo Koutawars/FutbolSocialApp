@@ -2,14 +2,18 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable("escenario_deportivo", {
+    return queryInterface.createTable("escenarios_deportivos", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      lugar: {
+      nombre: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      descrip: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -21,6 +25,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("escenario_deportivo");
+    return queryInterface.dropTable("escenarios_deportivos");
   }
 };

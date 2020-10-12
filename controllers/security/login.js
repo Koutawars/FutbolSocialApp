@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 var Sequelize = require('sequelize');
+const CONSTANT = require('../../config/constantServer');
 
 const Usuario = require('../../models/Usuario');
 const Op = Sequelize.Op;
@@ -40,7 +41,7 @@ var login = async (req, res) => {
         cedula: buscado.cedula
         // MAS DATOS...
     }
-    var token = jwt.sign(tokenData, 'Contraseña secreta', {
+    var token = jwt.sign(tokenData, CONSTANT.TOKENENCRIPTED, {
         expiresIn: 60 * 60 * 24 //expira en 24 hora
      })
     res.json({ jwt: token});

@@ -3,8 +3,8 @@ import Post from './Post'
 
 class Posts extends Component {
     render(){
-        var {posts} = this.props;
-        var listPosts = posts.map((post) => 
+        let {posts} = this.props;
+        let listPosts = posts.map((post) => 
             <Post key = {post.id} {...post} />
         );
         return(

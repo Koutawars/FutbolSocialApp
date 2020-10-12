@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const CONSTANT = require('../config/constantServer');
 module.exports = async () => {
     const Alquiler = require('./Alquiler');
     const Comentario = require('./Comentario');
@@ -38,11 +39,11 @@ module.exports = async () => {
 
     Post.hasMany(Comentario, {foreignKey: 'post_idpost'});
 
-    var dateFake = true;
+    let dateFake = false;
     if(dateFake){
         /*
-        var administrador = await Tipo_usuarios.create({tipo:"administrador"});
-        var userAdmin = await Usuario.create({
+        let administrador = await Tipo_usuarios.create({tipo:"administrador"});
+        let userAdmin = await Usuario.create({
             correo:"admin@gmail.com",
             password: "admin",
             cedula: 12345,
@@ -51,18 +52,23 @@ module.exports = async () => {
             nombres: "Carlos Miguel",
             apellidos: "Campo"
         });
-        console.log(userAdmin);
-       let admis = await Tipo_usuarios.findAll({
-           where: {
-               id: 1
-           },
-           include: [
-               {
-                   model: Usuario
-               }
-           ]
-       });
+        let normal = await Tipo_usuarios.create({tipo:"Usuario normal"});
+        let userNormal = await Usuario.create({
+            correo: "persona@normal.com",
+            password: "123456",
+            cedula: 123456,
+            saldo: 0,
+            tipo_usuario_id: normal.id,
+            nombres: "Anderson",
+            apellidos: "Hernandez"
+        });
         */
+        let cancha = await Escenario_deportivo.create({
+            nombre: "Cancha El Pando",
+            descrip: "En la 34 con cra 13, hay computadores para jugar a futbol",
+            valor_hora: 50000
+        })
+
     }
 
     const errHandler = (err) => {

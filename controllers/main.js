@@ -1,8 +1,19 @@
-var express = require('express');
-var router = express.Router();
-let auth = require('./security/auth');
-let login = require('./security/login');
-let register = require('./register');
+const express = require('express');
+const router = express.Router();
+
+// Middlewares
+const auth = require('./security/auth');
+const control = require('./security/control');
+
+// autenticación
+const register = require('./register');
+const login = require('./security/login');
+
+const CONSTANT = require('../config/constantServer');
+
+// router usuarios
+const routerUser = require('./users/user/userRouter');
+const routerAdmin = require('./users/admin/adminRouter')
 
 // ruta libre, login
 router.post('/login', login);
@@ -18,5 +29,13 @@ router.use(auth);
 router.post('/auth', (req, res) => {
     res.json(req.tokenInfo);
 });
+
+router.use(control([CONSTANT.ADMIID, CONSTANT.USERID]));
+// acceso solo para administrador y usuarios normales
+router.use('/user', routerUser);
+
+router.use(control([CONSTANT.ADMIID]));
+// acceso solo a administrador
+router.use('/admin', routerAdmin);
 
 module.exports = router;
