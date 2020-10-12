@@ -17,6 +17,8 @@ module.exports = async () => {
 
     Usuario.hasMany(Comentario, {foreignKey:'usuario_id'});
 
+    Usuario.hasMany(Escenario_deportivo, {foreignKey:'usuario_id'});
+
     Usuario.hasMany(Post, { foreignKey:'usuario_id'});
 
     Usuario.hasMany(Usuario_has_evento, { foreignKey:'usuario_id'});

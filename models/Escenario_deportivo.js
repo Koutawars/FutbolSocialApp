@@ -18,6 +18,14 @@ module.exports = sequelize.define("Escenario_deportivo", {
       valor_hora:{
         type: Sequelize.INTEGER,
         allowNull:false
+      },
+      imagen:{
+        type:uelize.BLOB("long"),
+        allowNull:true
+      },
+      usuario_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false
       }
     },
     {
