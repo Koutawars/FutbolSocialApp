@@ -11,7 +11,8 @@ class EditField extends Component {
             id: null,
             nombre: null,
             descrip: null,
-            valor_hora: null
+            valor_hora: null,
+            imagen: null
         }
         this.props.handler(() => this.setState({...this.state, show:true}));
     }
@@ -51,6 +52,15 @@ class EditField extends Component {
              });
         }
     }
+    handleChangeImage = async (e) => {
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload =  () => {
+            this.setState({
+                imagen: reader.result
+            })
+        }
+    }
     render(){
         const handleClose = () => this.setState({...this.state, show:false});
         return (
@@ -72,6 +82,16 @@ class EditField extends Component {
                         <Form.Group controlId="valor_hora">
                             <Form.Label>Precio por hora</Form.Label>
                             <Form.Control defaultValue={this.props.info.valor_hora} onChange = {this.handleChange} type="number" placeholder="$ por hora" />
+                        </Form.Group>
+                        <Form.Group  controlId="imagen">
+                            <Form.File
+                            className="position-relative"
+                            required
+                            name="Imagen"
+                            label="Imagen"
+                            onChange={this.handleChangeImage}
+                            feedbackTooltip
+                            />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>

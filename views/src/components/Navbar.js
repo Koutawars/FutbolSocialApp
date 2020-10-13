@@ -11,7 +11,7 @@ class NavbarComp extends Component {
     render(){
         return (
             <Navbar sticky="top" bg="light" expand="lg">
-                <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand href="/">Red social futbol</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -21,7 +21,6 @@ class NavbarComp extends Component {
                         <Button className="mr-sm-2" variant="outline-success">Buscar</Button>
                         <Nav.Link className="text-danger" onClick = {this.logOut}><AiOutlineLogout/></Nav.Link>
                     </Form>
-
                 </Navbar.Collapse>
             </Navbar>
         );

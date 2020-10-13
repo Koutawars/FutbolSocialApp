@@ -16,7 +16,8 @@ class Main extends Component {
             info: {
                 nombre: null,
                 descrip: null,
-                precio: null
+                precio: null,
+                imagen: null
             }
         }
     }
