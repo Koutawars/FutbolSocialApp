@@ -64,6 +64,7 @@ module.exports = async () => {
             apellidos: "Hernandez"
         });
         let cancha = await Escenario_deportivo.create({
+            usuario_id: userAdmin.id,
             nombre: "Cancha El Pando",
             descrip: "En la 34 con cra 13, hay computadores para jugar a futbol",
             valor_hora: 50000

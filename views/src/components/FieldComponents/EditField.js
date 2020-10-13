@@ -33,7 +33,6 @@ class EditField extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
         if(this.state.nombre && this.state.descrip && this.state.valor_hora){
             let url = CONSTANT.URL + "/api/admin/field/update/" + this.state.id;
             const jwt = getJwt();

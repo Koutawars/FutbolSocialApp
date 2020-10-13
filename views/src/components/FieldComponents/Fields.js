@@ -18,7 +18,6 @@ class Fields extends Component {
             const jwt = getJwt();
             let admin = this.props.data.tipoId === CONSTANT.ADMIID;
             let url = CONSTANT.URL + ((admin) ?"/api/admin/field":"/api/user/getFields");
-            console.log(url);
             axios.get(url,
             {
                 headers: {

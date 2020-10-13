@@ -1,10 +1,25 @@
 import React, {Component} from 'react';
 import {Card} from 'react-bootstrap'
-import imagefield from '../../Images/fieldTest.jpg'
+// import imagefield from '../../Images/fieldTest.jpg'
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 
 class Field extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            imagen: null
+        }
+    }
+
+    UNSAFE_componentWillMount(){
+        if(this.props.imagen){
+            this.setState({
+                ...this.state,
+                imagen:this.props.imagen
+            });
+        }
+    }
     render(){
         let triggerEdit = () => {
             this.props.infoEdit(this.props);
@@ -23,9 +38,10 @@ class Field extends Component {
                 <Card.Link href="#"></Card.Link>
             </>
         );
+        var cardImg = this.props.imagen? <Card.Img variant="top" src={this.state.imagen} />: <></>;
         return  (
             <Card>
-                <Card.Img variant="top" src={imagefield} />
+                {cardImg}
                 <Card.Body>
                 <Card.Title>{this.props.nombre}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">${this.props.valor_hora}/hora</Card.Subtitle>

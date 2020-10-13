@@ -22,7 +22,7 @@ module.exports = {
         allowNull:false
       },
       imagen:{
-        type:uelize.BLOB("long"),
+        type:Sequelize.STRING(500000),
         allowNull:true
       },
       usuario_id:{
