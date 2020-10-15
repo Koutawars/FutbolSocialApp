@@ -19,7 +19,7 @@ class Profile extends Component {
                         <Main {...this.props}></Main>
                     </Col>
                     <Col xs="0" sm="3" md="4" lg="4">
-                        Hola
+                        
                     </Col>
                 </Row>
             </React.Fragment>

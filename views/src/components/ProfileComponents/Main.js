@@ -19,7 +19,7 @@ class Main extends Component {
             <div>
                 <Row>
                     <Col>
-                        <Information nombres={this.props.data.nombres} apellidos={this.props.data.apellidos}/>
+                        <Information cedula = {this.props.data.cedula} nombres={this.props.data.nombres} apellidos={this.props.data.apellidos}/>
                         <MakePost/>
                     </Col>
                 </Row>
