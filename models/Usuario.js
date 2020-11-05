@@ -15,6 +15,9 @@ module.exports = sequelize.define("Usuario", {
   password: {
     type: Sequelize.STRING,
     allowNull: false
+  },imagen:{
+    type:Sequelize.STRING(500000),
+    allowNull:true
   },
   cedula: {
     type: Sequelize.INTEGER,
