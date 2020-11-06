@@ -14,8 +14,7 @@ const searchFields = async (req, res) => {
                     [Op.lte]: text
                 }}
             ]
-        },
-        attributes: { exclude: ['id','usuario_id'] }
+        }
     });
     console.log(text);
     res.json({field});

@@ -6,9 +6,14 @@ const searchUsers = async (req, res) => {
     let field = await Field.findAll({
         
         where: {
-            nombres: {
-                 [Op.substring]: text
-            }
+            [Op.or]: [
+                { nombres: {
+                    [Op.substring]: text
+                }}, 
+                {apellidos: {
+                    [Op.substring]: text
+                }}
+            ]
         },
         attributes: { exclude: ['password','correo','cedula','saldo','tipo_usuario_id'] }
     });
