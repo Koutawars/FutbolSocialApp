@@ -2,35 +2,25 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable("posts", {
+    return await queryInterface.createTable("seguir", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      usuario_id: {
+      id_seguido: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
-      imagen:{
-        type: Sequelize.BLOB("long"),
-        allowNull: true
-      },
-      pie_post:{
-        type: Sequelize.STRING("1000"),
-        allowNull: false
-
-      },
-      eventos_id: {
+      id_seguidor:{
         type: Sequelize.INTEGER,
-        allowNull : true
+        allowNull: false,
       }
-
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("posts");
+    return await queryInterface.dropTable("seguir");
   }
 };

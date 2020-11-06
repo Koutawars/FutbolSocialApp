@@ -1,7 +1,7 @@
 const Field = require('../../../models/Usuario');
 
 const updateUser = async (req, res) => {
-    let {id} = req.params;
+    let id =  req.tokenInfo.id;
     let {correo, password, imagen, cedula, nombres, apellidos} = req.body;
     let field;
     if(imagen){

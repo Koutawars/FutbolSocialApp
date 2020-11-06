@@ -12,6 +12,7 @@ module.exports = async () => {
     const Tipo_usuarios = require('./Tipo_usuarios');
     const Usuario_has_evento = require('./Usuario_has_evento');
     const Usuario = require('./Usuario');
+    const Seguir = require('./Seguir');
 
     Tipo_usuarios.hasMany(Usuario, { foreignKey: 'tipo_usuario_id'});
 
@@ -22,6 +23,8 @@ module.exports = async () => {
     Usuario.hasMany(Post, { foreignKey:'usuario_id'});
 
     Usuario.hasMany(Usuario_has_evento, { foreignKey:'usuario_id'});
+
+    Usuario.hasMany(Seguir, { foreignKey:'id_seguidor'});
 
     Usuario.hasMany(Alquiler, { foreignKey: 'usuario_id'});
 

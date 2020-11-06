@@ -22,7 +22,7 @@ module.exports = sequelize.define("Post", {
       },
       eventos_id: {
         type: Sequelize.INTEGER,
-        allowNull : false
+        allowNull : true
       }
     },
     {
