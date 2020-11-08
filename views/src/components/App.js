@@ -8,6 +8,7 @@ import SignIn from '../pages/SignIn'
 import Home from '../pages/Home'
 import Profile from '../pages/Profile'
 import Fields from '../pages/Fields'
+import Search from '../pages/search'
 
 // seguridad
 import Auth from './SecurityComponents/AuthenticatedComponent'
@@ -22,6 +23,7 @@ function App() {
           <Route exact path={"/"} component = {Auth(Home)} ></Route>
           <Route exact path={"/perfil"} component = {Auth(Profile)} ></Route>
           <Route exact path={"/canchas"} component = {Auth(Fields)} ></Route>
+          <Route exact path={"/search"} component = {Auth(Search)} ></Route>
         </Switch>
     </BrowserRouter>
   );

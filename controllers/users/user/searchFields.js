@@ -3,7 +3,7 @@ const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
 const searchFields = async (req, res) => {
     let text = req.query.q
-    let field = await Field.findAll({
+    let results = await Field.findAll({
         
         where: {
             [Op.or]: [
@@ -16,8 +16,7 @@ const searchFields = async (req, res) => {
             ]
         }
     });
-    console.log(text);
-    res.json({field});
+    res.json({results});
 }
 
 module.exports = searchFields;

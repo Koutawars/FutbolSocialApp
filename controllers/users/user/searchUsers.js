@@ -3,8 +3,7 @@ const Sequelize = require('Sequelize');
 const Op = Sequelize.Op;
 const searchUsers = async (req, res) => {
     let text = req.query.q
-    let field = await Field.findAll({
-        
+    let results = await Field.findAll({
         where: {
             [Op.or]: [
                 { nombres: {
@@ -17,8 +16,7 @@ const searchUsers = async (req, res) => {
         },
         attributes: { exclude: ['password','correo','cedula','saldo','tipo_usuario_id'] }
     });
-    console.log(text);
-    res.json({field});
+    res.json({results});
 }
 
 module.exports = searchUsers;
