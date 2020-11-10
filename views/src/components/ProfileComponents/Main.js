@@ -1,31 +1,66 @@
 import React, {Component} from 'react';
-import image from '../../Images/test.jpg'
 import {Row, Col} from 'react-bootstrap'
 import MakePost from '../PostComponents/MakePost';
 import Information from './Information'
 import Posts from '../PostComponents/Posts'
+
+import CONSTANT from '../../helpers/constant';
+import { getJwt } from '../../helpers/jwt';
+import axios from 'axios';
 class Main extends Component {
+    constructor(){
+        super();
+        this.state = {
+            postsArray: [],
+            usuario: {
+                nombres: null,
+                apellidos:null,
+                imagen:null
+            }
+        }
+    }
+    componentDidUpdate(prevProps) {
+        if(this.props !== prevProps){ 
+            let url = CONSTANT.URL + "/api/user/getPostUsuario/" + this.props.id;
+            const jwt = getJwt();
+            axios.get(url, 
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            }).then(res => {
+                if (res.data.usuario){
+                    let postsArray = res.data.usuario.Posts;
+                    postsArray.map(post => {
+                        post.idUsuario = res.data.usuario.id;
+                        post.usuario = res.data.usuario.nombres + " " + res.data.usuario.apellidos;
+                        return post;
+                    })
+                    res.data.usuario.Posts = null;
+                    let usuario = res.data.usuario;
+                    this.setState({
+                        ...this.state,
+                        postsArray,
+                        usuario
+                    })
+                    console.log(this.state);
+                }
+            });
+        }
+    }
     render(){
-        var postsArray = [
-            {id:1, contenido: "Este es un post de prueba de perfil."},
-            {id:2, contenido: "Este es un post de prueba de perfil.", imagen:image},
-            {id:3, contenido: "Este es un post de prueba de perfil.", imagen:image},
-            {id:4, contenido: "Este es un post de prueba de perfil.", imagen:image},
-            {id:5, contenido: "Este es un post de prueba de perfil."},
-            {id:6, contenido: "Este es un post de prueba de perfil."},
-            {id:7, contenido: "Este es un post de prueba de perfil.", imagen:image}
-        ]
         return (
             <div>
                 <Row>
                     <Col>
-                        <Information cedula = {this.props.data.cedula} nombres={this.props.data.nombres} apellidos={this.props.data.apellidos}/>
+                        <Information {...this.state.usuario} />
                         <MakePost/>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Posts posts = {postsArray} />
+                        <Posts posts = {this.state.postsArray} />
                     </Col>
                 </Row>
             </div>

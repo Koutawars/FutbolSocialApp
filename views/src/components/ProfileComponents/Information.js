@@ -6,6 +6,7 @@ import {GrDocumentText} from "react-icons/gr"
 
 class Information extends Component {
     render(){
+        let imagen = this.props.imagen ? this.props.imagen:testPerfil;
         return(
             <Row className = "py-2">
                 <Col xs = "3">

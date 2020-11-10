@@ -12,10 +12,10 @@ module.exports = sequelize.define("Post", {
         allowNull: false
       },
       imagen:{
-        type: Sequelize.BLOB("long"),
-        allowNull: true
+        type:Sequelize.STRING(500000),
+        allowNull:true
       },
-      pie_post:{
+      contenido:{
         type: Sequelize.STRING("1000"),
         allowNull: false
 

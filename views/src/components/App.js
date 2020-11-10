@@ -22,6 +22,7 @@ function App() {
           <Route exact path={"/registrar"} component = {SignIn} ></Route>
           <Route exact path={"/"} component = {Auth(Home)} ></Route>
           <Route exact path={"/perfil"} component = {Auth(Profile)} ></Route>
+          <Route exact path={"/perfil/:id"} component = {Auth(Profile)} ></Route>
           <Route exact path={"/canchas"} component = {Auth(Fields)} ></Route>
           <Route exact path={"/search"} component = {Auth(Search)} ></Route>
         </Switch>

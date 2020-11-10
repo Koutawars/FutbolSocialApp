@@ -3,11 +3,13 @@ import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/Menu'
 import Main from '../components/ProfileComponents/Main'
+import {withRouter} from 'react-router-dom';
 class Profile extends Component {
     componentDidMount() {
         document.title = "Perfil";
     }
     render(){
+        let {id} = this.props.match.params.id? this.props.match.params:this.props.data;
         return (
             <React.Fragment>
                 <Navbar></Navbar>
@@ -16,7 +18,7 @@ class Profile extends Component {
                         <Menu></Menu>
                     </Col>
                     <Col xs="10" sm="8" md="7" lg ="5">
-                        <Main {...this.props}></Main>
+                        <Main {...this.props} id = {id}></Main>
                     </Col>
                     <Col xs="0" sm="3" md="4" lg="4">
                         
@@ -27,4 +29,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default withRouter(Profile);
