@@ -16,11 +16,17 @@ class Main extends Component {
                 nombres: null,
                 apellidos:null,
                 imagen:null
-            }
+            },
+            update: false
         }
     }
+    updatePost = () => {
+        this.setState({
+            update: true
+        })
+    }
     componentDidUpdate(prevProps) {
-        if(this.props !== prevProps){ 
+        if(this.props !== prevProps || this.state.update){ 
             let url = CONSTANT.URL + "/api/user/getPostUsuario/" + this.props.id;
             const jwt = getJwt();
             axios.get(url, 
@@ -42,7 +48,8 @@ class Main extends Component {
                     this.setState({
                         ...this.state,
                         postsArray,
-                        usuario
+                        usuario,
+                        update:false
                     })
                 }
             });
@@ -54,7 +61,7 @@ class Main extends Component {
                 <Row>
                     <Col>
                         <Information {...this.state.usuario} />
-                        <MakePost/>
+                        <MakePost updatePost = {this.updatePost}/>
                     </Col>
                 </Row>
                 <Row>
