@@ -28,7 +28,7 @@ class MakePost extends Component {
                     </Col>
                     <Col xs={12}>
                         <Button className="float-right mb-2" variant="outline-primary">Publicar</Button>
-                        <Button type="submit" onClick={uploadImage} className="float-right mr-1" variant ="outline-secondary"><AiFillFileImage/></Button>
+                        <Button onClick={uploadImage} className="float-right mr-1" variant ="outline-secondary"><AiFillFileImage/></Button>
                         <Form.File accept="image/*" className="d-lg-none" ref={this.formFile} />
                     </Col>
                 </Row>

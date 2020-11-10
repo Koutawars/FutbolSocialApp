@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 
 import {withRouter} from "react-router-dom"
 import Field from "../FieldComponents/Field"
-import {Col} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
+
+import User from './User';
 
 import CONSTANT from '../../helpers/constant'
 import { getJwt } from '../../helpers/jwt';
@@ -17,6 +19,7 @@ class Main extends Component {
     }
     componentDidUpdate(prevProps, prevState){
         if(this.props !== prevProps){
+            // buscar canchas 
             let url_string = window.location.href;
             let url_object = new URL(url_string);
             let textSearch = url_object.searchParams.get("q");
@@ -29,21 +32,45 @@ class Main extends Component {
                     'Authorization': `Bearer ${jwt}`
                 }
             }).then(res => {
-                console.log(res.data);
                 this.setState({
                     ...this.state,
                     fields:res.data.results
                 })
             });
+            // buscar personas 
+            url = CONSTANT.URL + "/api/user/searchUsers?q=" + textSearch;
+            axios.get(url, 
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            }).then(res => {
+                this.setState({
+                    ...this.state,
+                    users:res.data.results
+                })
+            });
+
+
         }
     }
     render(){
         let fields = this.state.fields.map((field) => 
-            <Col key = {field.id} className="pt-1" xs={6}>
+            <Col key = {field.id} className="pt-1" xs={4}>
                 <Field {...field} />
             </Col>
         );
-        return (fields);
+        let users = this.state.users.map((user) => 
+        <Col key = {user.id} className="pt-1" xs={4}>
+            <User {...user} />
+        </Col>
+    );
+        return (
+        <Row>
+            {users}
+            {fields}
+        </Row>);
     }
 }
 

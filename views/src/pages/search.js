@@ -12,10 +12,8 @@ class Search extends Component {
                     <Col className="lex-xl-nowrap" xs ="2" sm="1" md="1" lg="3" >
                         <Menu></Menu>
                     </Col>
-                    <Col xs="10" sm="8" md="7" lg ="5">
+                    <Col xs="10" sm="11" md="11" lg ="9">
                         <Main/>
-                    </Col>
-                    <Col xs="0" sm="3" md="4" lg="4">   
                     </Col>
                 </Row>
             </React.Fragment>

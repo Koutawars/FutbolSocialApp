@@ -10,7 +10,7 @@ class Information extends Component {
         return(
             <Row className = "py-2">
                 <Col xs = "3">
-                    <Image src={testPerfil} roundedCircle fluid  />
+                    <Image src={imagen} roundedCircle fluid  />
                 </Col>
                 <Col xs = "9">
                     <h4 className = "pt-4"><span className="text-primary"><BsFillPersonFill/></span> {this.props.nombres} {this.props.apellidos}</h4>

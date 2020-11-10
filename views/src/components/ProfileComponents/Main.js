@@ -44,7 +44,6 @@ class Main extends Component {
                         postsArray,
                         usuario
                     })
-                    console.log(this.state);
                 }
             });
         }

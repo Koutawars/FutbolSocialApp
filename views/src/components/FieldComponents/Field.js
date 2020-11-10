@@ -34,18 +34,16 @@ class Field extends Component {
             </>
         ):(
             <>
-                <Card.Link href="#"></Card.Link>
-                <Card.Link href="#"></Card.Link>
             </>
         );
         var cardImg = this.props.imagen? <Card.Img variant="top" src={this.state.imagen} />: <></>;
         return  (
             <Card>
                 {cardImg}
-                <Card.Body>
-                <Card.Title>{this.props.nombre}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">${this.props.valor_hora}/hora</Card.Subtitle>
-                    <Card.Text>
+                <Card.Body className ="pb-2">
+                    <Card.Title>{this.props.nombre}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">${this.props.valor_hora}/hora</Card.Subtitle>
+                    <Card.Text className ="mb-1">
                         {this.props.descrip}
                     </Card.Text>
                     {botonAdmin}
