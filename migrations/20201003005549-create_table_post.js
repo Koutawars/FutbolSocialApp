@@ -25,6 +25,11 @@ module.exports = {
         eventos_id: {
           type: Sequelize.INTEGER,
           allowNull : true
+        },
+        fecha: {
+          type: Sequelize.DATE,
+          allowNull: false,
+          defaultValue: Sequelize.NOW
         }
       });
   },

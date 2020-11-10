@@ -24,8 +24,8 @@ module.exports = sequelize.define("Post", {
         type: Sequelize.INTEGER,
         allowNull : true
       },
-      fecha:{
-        type: Sequelize.DATEONLY,
+      fecha: {
+        type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW
       }

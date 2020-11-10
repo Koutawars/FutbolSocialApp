@@ -10,7 +10,7 @@ const getPostUsuario = async (req, res) => {
         },
         include: Post,
         attributes: { exclude: ['password','correo','cedula','saldo','tipo_usuario_id'] },
-        order: '`fecha` DESC'
+        order:[[Post, 'fecha', 'DESC']]
     });
     res.json({usuario});
 }
