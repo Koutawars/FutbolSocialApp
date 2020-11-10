@@ -23,6 +23,11 @@ module.exports = sequelize.define("Post", {
       eventos_id: {
         type: Sequelize.INTEGER,
         allowNull : true
+      },
+      fecha:{
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
       }
     },
     {
