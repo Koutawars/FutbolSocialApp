@@ -45,7 +45,7 @@ class MakePost extends Component {
                 }
             })
         .then(res => {
-            if(res.status == 200){
+            if(res.status === 200){
                 this.props.updatePost();
                 document.querySelector("#contenido").value = "";
                 document.querySelector("#imagen").value = "";
