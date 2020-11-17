@@ -7,6 +7,7 @@ const searchFields = require('./searchFields');
 const seguirUsuario = require('./seguirUsuario');
 const addPost = require('./addPost');
 const getPostUsuario = require('./getPostUsuario');
+const deleteSeguir = require('./deleteSeguir');
 
 //  [GET] http://localhost:5000/api/user/getFields
 router.get('/getFields', getFields);
@@ -28,6 +29,9 @@ router.post('/seguirUsuario',seguirUsuario);
 
 // [POST] http://localhost:5000/api/user/addPost
 router.post('/addPost',addPost);
+
+// [DELETE] http://localhost:5000/api/user/deleteSeguir
+router.delete('/deleteSeguir/:id',deleteSeguir);
 
 
 module.exports = router;
