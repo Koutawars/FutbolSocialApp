@@ -16,14 +16,31 @@ class Information extends Component {
         this.buttonFollow = React.createRef();
     }
     followAsk = () => {
-
-    }
-    follow = () => {
-        let url = CONSTANT.URL + "/api/user/seguirUsuario";
+        let url = CONSTANT.URL + "/api/user/itsSeguido/" + this.props.id;
         const jwt = getJwt();
-        axios.post(url, {
-            id: this.props.id
-        },
+        axios.get(url, 
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            }
+        }).then(res => {
+            if(res.data.result) {
+                this.setState({
+                    seguir: 2
+                })
+            }else {
+                this.setState({
+                    seguir: 1
+                })
+            }
+        });
+    }
+
+    follow = () => {
+        let url = CONSTANT.URL + "/api/user/seguirUsuario/" + this.props.id;
+        const jwt = getJwt();
+        axios.post(url, {}, 
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +52,29 @@ class Information extends Component {
                     seguir:2
                 })
             }
-        });
+        }).catch(e => {
+            console.log({e});
+        })
+    }
+
+    unFollow = () => {
+        let url = CONSTANT.URL + "/api/user/deleteSeguir/" + this.props.id;
+        const jwt = getJwt();
+        axios.delete(url, 
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            }
+        }).then(res => {
+            if(res.status === 200) {
+                this.setState({
+                    seguir:1
+                })
+            }
+        }).catch(e => {
+            console.log({e});
+        })
     }
     render(){
         let imagen = this.props.imagen ? this.props.imagen:testPerfil;
@@ -45,7 +84,7 @@ class Information extends Component {
                 if(this.state.seguir === 1) {
                     button = <Button onClick={this.follow} className="text-white" variant="primary">Seguir</Button>;
                 }else {
-                    button = <Button variant="outline-secondary">Dejar de seguir</Button>;
+                    button = <Button onClick={this.unFollow} variant="outline-secondary">Dejar de seguir</Button>;
                 }
             }else {
                 this.followAsk();
