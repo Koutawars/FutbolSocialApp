@@ -1,29 +1,64 @@
 import React, {Component} from 'react';
-import image from '../../Images/test.jpg'
-import {Row, Col} from 'react-bootstrap'
-import MakePost from '../PostComponents/MakePost'
+import {Row, Col, Spinner} from 'react-bootstrap'
 import Posts from '../PostComponents/Posts'
+
+import CONSTANT from '../../helpers/constant';
+import { getJwt } from '../../helpers/jwt';
+import axios from 'axios';
 class Main extends Component {
-    render(){
-        var postsArray = [
-            {id:1, contenido: "Este es un post de prueba."},
-            {id:2, contenido: "Este es un post de prueba.", imagen:image},
-            {id:3, contenido: "Este es un post de prueba.", imagen:image},
-            {id:4, contenido: "Este es un post de prueba.", imagen:image},
-            {id:5, contenido: "Este es un post de prueba."},
-            {id:6, contenido: "Este es un post de prueba."},
-            {id:7, contenido: "Este es un post de prueba.", imagen:image}
-        ]
+    constructor(props){
+        super(props);
+        this.state = {
+            postsArray: [],
+            estado: 0
+        }
+    }
+    
+    componentDidUpdate(prevProps) {
+        if(this.props !== prevProps){ 
+            let url = CONSTANT.URL + "/api/user/getPostAllUsers";
+            const jwt = getJwt();
+            axios.get(url, 
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            }).then(res => {
+                let postsArray = res.data.result;
+                if(postsArray.lenght !== 0){
+                    postsArray.map(post => {
+                        post.idUsuario = post.id;
+                        post.usuario = post.Usuario.nombres + " " + post.Usuario.apellidos;
+                        return post;
+                    })
+                    this.setState({
+                        ...this.state,
+                        postsArray,
+                        estado:1
+                    });
+                } else {
+                    this.setState({
+                        estado: 2
+                    })
+                }
+            });
+        }
+    }
+        render(){
+        let posts = <div />;
+        if(this.state.estado === 0) {
+            posts = <div className="text-center text-primary mt-5"><Spinner animation="border" /></div>;
+        }else if(this.state.estado === 1) {
+            posts = <Posts posts = {this.state.postsArray} />;
+        }else {
+            posts = <div>No hay posts</div>;
+        }
         return (
             <div>
                 <Row>
                     <Col>
-                        <MakePost/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Posts posts = {postsArray} />
+                        {posts}
                     </Col>
                 </Row>
             </div>
