@@ -21,10 +21,12 @@ module.exports = async () => {
     Usuario.hasMany(Escenario_deportivo, {foreignKey:'usuario_id'});
 
     Usuario.hasMany(Post, { foreignKey:'usuario_id'});
+    Post.belongsTo(Usuario, { foreignKey: 'usuario_id'});
 
     Usuario.hasMany(Usuario_has_evento, { foreignKey:'usuario_id'});
 
-    Usuario.hasMany(Seguir, { foreignKey:'id_seguidor'});
+    Usuario.hasMany(Seguir, { foreignKey:'id_seguido'});
+    Seguir.belongsTo(Usuario, { foreignKey: 'id_seguido'});
 
     Usuario.hasMany(Alquiler, { foreignKey: 'usuario_id'});
 

@@ -8,7 +8,8 @@ const seguirUsuario = require('./seguirUsuario');
 const addPost = require('./addPost');
 const getPostUsuario = require('./getPostUsuario');
 const deleteSeguir = require('./deleteSeguir');
-
+const itsSeguido = require('./itsSeguido');
+const getPostAllUsers = require('./getPostAllUsers');
 //  [GET] http://localhost:5000/api/user/getFields
 router.get('/getFields', getFields);
 
@@ -25,13 +26,18 @@ router.get('/getPostUsuario/:id',getPostUsuario);
 router.put('/updateUser',updateUser);
 
 // [POST] http://localhost:5000/api/user/seguirUsuario
-router.post('/seguirUsuario',seguirUsuario);
+router.post('/seguirUsuario/:id_seguido',seguirUsuario);
 
 // [POST] http://localhost:5000/api/user/addPost
 router.post('/addPost',addPost);
-
 // [DELETE] http://localhost:5000/api/user/deleteSeguir
-router.delete('/deleteSeguir/:id',deleteSeguir);
+router.delete('/deleteSeguir/:id_seguido',deleteSeguir);
+
+// [get] http://localhost:5000/api/user/itsSeguido
+router.get('/itsSeguido/:id_seguido',itsSeguido);
+
+// [get] http://localhost:5000/api/user/getPostAllUsers
+router.get('/getPostAllUsers',getPostAllUsers);
 
 
 module.exports = router;
