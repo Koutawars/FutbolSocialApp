@@ -56,12 +56,14 @@ class Main extends Component {
         }
     }
     render(){
+        let showBotton = this.state.usuario.id !== this.props.data.id;
+        let makePost = showBotton?<div/>:<MakePost updatePost = {this.updatePost}/>;
         return (
             <div>
                 <Row>
                     <Col>
-                        <Information {...this.state.usuario} />
-                        <MakePost updatePost = {this.updatePost}/>
+                        <Information {...this.state.usuario} showBotton = {showBotton} />
+                        {makePost}
                     </Col>
                 </Row>
                 <Row>

@@ -1,13 +1,13 @@
 const Field = require('../../../models/Seguir');
 
 const seguirUsuario = async (req, res) => {
-    let {id_seguido} = req.body;
+    let {id} = req.body;
     var id_seguidor = req.tokenInfo.id;
-    let field = await Field.create({
-        id_seguido,
+    let result = await Field.create({
+        id_seguido:id,
         id_seguidor
     })
-    res.json({field});
+    res.json({result});
 }
 
 module.exports = seguirUsuario;
