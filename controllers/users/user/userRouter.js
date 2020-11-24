@@ -10,6 +10,10 @@ const getPostUsuario = require('./getPostUsuario');
 const deleteSeguir = require('./deleteSeguir');
 const itsSeguido = require('./itsSeguido');
 const getPostAllUsers = require('./getPostAllUsers');
+const deletePost = require('./deletePost');
+const addComentario = require('./addComentario');
+const getPostAndComenst = require('./getPostAndComenst');
+
 //  [GET] http://localhost:5000/api/user/getFields
 router.get('/getFields', getFields);
 
@@ -38,6 +42,15 @@ router.get('/itsSeguido/:id_seguido',itsSeguido);
 
 // [get] http://localhost:5000/api/user/getPostAllUsers
 router.get('/getPostAllUsers',getPostAllUsers);
+
+// [DELETE] http://localhost:5000/api/user/deletePost
+router.delete('/deletePost/:id',deletePost);
+
+// [POST] http://localhost:5000/api/user/addComentario
+router.post('/addComentario/:post_idpost',addComentario);
+
+// [get] http://localhost:5000/api/user/getPostAndComenst
+router.get('/getPostAndComenst/:post_idpost',getPostAndComenst);
 
 
 module.exports = router;
