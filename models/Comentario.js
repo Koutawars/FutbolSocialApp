@@ -7,7 +7,7 @@ module.exports = sequelize.define("Comentario", {
         autoIncrement: true,
         primaryKey: true
     },
-    post_idpost: {
+    idpost: {
         type: Sequelize.INTEGER,
         allowNull: false
     },

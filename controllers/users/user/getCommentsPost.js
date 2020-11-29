@@ -7,13 +7,13 @@ const getCommentsPost = async (req, res) => {
 
     let comentarios = await Comentario.findAll({
         where: {
-            post_idpost:idPost
+            idPost
         },
         include: [{
             model: Usuario,
             attributes: { exclude: ['password','correo','cedula','saldo','tipo_usuario_id'] }
         }],
-        order:[['fecha', 'DESC']]
+        order:[['fecha', 'ASC']]
     }).catch((err) => {
         console.log(err);
     })

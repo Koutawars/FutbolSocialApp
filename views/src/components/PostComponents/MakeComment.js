@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {InputGroup, FormControl, Image, Form} from 'react-bootstrap'
 
+import { getJwt } from '../../helpers/jwt'
+import axios from 'axios';
+import CONSTANT from '../../helpers/constant'
 class MakeComment extends Component {
     constructor(props){
         super(props);
@@ -16,12 +19,31 @@ class MakeComment extends Component {
     };
     comentar = (e) => {
         e.preventDefault();
+        let url = CONSTANT.URL + "/api/user/addComentario/" + this.props.idPost;
+        const jwt = getJwt();
         let idInput = "content" + this.props.idPost;
-        console.log(this.props);
-        this.setState({
-            [idInput]: ""
-        });
-        document.getElementById(idInput).value = "";
+        let body = {
+            content: this.state[idInput]
+        }
+        axios.post(url, body,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            })
+        .then(res => {
+            if(res.status === 200){
+                let idInput = "content" + this.props.idPost;
+                this.setState({
+                    [idInput]: ""
+                });
+                document.getElementById(idInput).value = "";
+                this.props.updateComment();
+            }
+         }).catch(err => {
+            console.log(err);
+         });
     }
     render(){
         let idInput = "content" + this.props.idPost;

@@ -91,12 +91,12 @@ class Post extends Component {
             commentsJsx = (
             <React.Fragment>
                 <Comments comments={this.state.comments}/>
-                <MakeComment imagen={testPerfil} idPost = {this.props.id}/>
+                <MakeComment imagen={testPerfil} idPost = {this.props.id} updateComment={this.getComments}/>
             </React.Fragment>);
         } 
         let eliminarPost = <div />;
         if(this.props.myId === this.props.idUsuario) {
-            eliminarPost = <div onClick = {this.deletePost} style ={{"position": "absolute", "paddingLeft":"92%", "top": "1%"}} className = "text-danger"><AiFillDelete style={{"cursor": "pointer"}}/></div>
+            eliminarPost = <div style ={{"position": "absolute", "paddingLeft":"92%", "top": "1%"}} className = "text-danger"><AiFillDelete onClick = {this.deletePost} style={{"cursor": "pointer"}}/></div>
         }
         return (
             <Card style = {{"marginBottom":"16px"}}>

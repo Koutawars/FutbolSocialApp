@@ -48,7 +48,7 @@ router.get('/getPostAllUsers',getPostAllUsers);
 router.delete('/deletePost/:id',deletePost);
 
 // [POST] http://localhost:5000/api/user/addComentario
-router.post('/addComentario/:post_idpost',addComentario);
+router.post('/addComentario/:idpost',addComentario);
 
 // [get] http://localhost:5000/api/user/getPostAndComenst
 router.get('/getPostAndComenst/:post_idpost',getPostAndComenst);

@@ -1,18 +1,14 @@
 const Comentario = require('../../../models/Comentario');
-
 const addComentario = async (req, res) => {
-    let comentario = req.body.comentario
-    let {post_idpost} = req.params;
-    var usuario_id = req.tokenInfo.id;
-    let comentrarioC = await Comentario.create({
-        post_idpost,
-        usuario_id,
-        comentario
+    let content = req.body.content;
+    let {idpost} = req.params;
+    var idUsuario = req.tokenInfo.id;
+    let comentario = await Comentario.create({
+        idpost,
+        idUsuario,
+        comentario:content
     })
-    res.json({comentrarioC});
-
-    
-    
+    res.json({comentario});
 }
 
 module.exports = addComentario;

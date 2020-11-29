@@ -45,7 +45,7 @@ module.exports = async () => {
 
     Evento.hasMany(Usuario_has_evento, {foreignKey: 'eventos_id'});
 
-    Post.hasMany(Comentario, {foreignKey: 'post_idpost'});
+    Post.hasMany(Comentario, {foreignKey: 'idpost'});
 
     let dateFake = false;
     if(dateFake){
