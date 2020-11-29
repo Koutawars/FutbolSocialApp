@@ -8,6 +8,7 @@ import CONSTANT from '../../helpers/constant';
 import { getJwt } from '../../helpers/jwt';
 import axios from 'axios';
 class Main extends Component {
+    _isMounted = false;
     constructor(){
         super();
         this.state = {
@@ -20,22 +21,25 @@ class Main extends Component {
             update: false
         }
     }
+    componentDidMount(){
+        this._isMounted = true;
+    }
     updatePost = () => {
         this.setState({
             update: true
         })
     }
-    componentDidUpdate(prevProps) {
-        if(this.props !== prevProps || this.state.update){ 
-            let url = CONSTANT.URL + "/api/user/getPostUsuario/" + this.props.id;
-            const jwt = getJwt();
-            axios.get(url, 
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${jwt}`
-                }
-            }).then(res => {
+    getPostUsuario = () => {
+        let url = CONSTANT.URL + "/api/user/getPostUsuario/" + this.props.id;
+        const jwt = getJwt();
+        axios.get(url, 
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            }
+        }).then(res => {
+            if(this._isMounted){
                 if (res.data.usuario){
                     let postsArray = res.data.usuario.Posts;
                     postsArray.map(post => {
@@ -52,7 +56,12 @@ class Main extends Component {
                         update:false
                     })
                 }
-            });
+            }
+        });
+    }
+    componentDidUpdate(prevProps) {
+        if(this.props !== prevProps || this.state.update){ 
+            this.getPostUsuario();
         }
     }
     render(){
@@ -68,7 +77,7 @@ class Main extends Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Posts posts = {this.state.postsArray} />
+                        <Posts posts = {this.state.postsArray} updateUsuario = {this.getPostUsuario}/>
                     </Col>
                 </Row>
             </div>

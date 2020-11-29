@@ -29,10 +29,11 @@ class Login extends Component {
             correo: this.state.correo,
             password: this.state.password
         }).then(res => {
+            localStorage.setItem('usuario', JSON.stringify(res.data.usuario));
             localStorage.setItem('jwt', res.data.jwt);
             this.props.history.push('/');
         }).catch((err) => {
-            console.log("Correo o contraseña incorrectos");
+            console.log(err);
         });
     }
     

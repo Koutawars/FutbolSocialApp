@@ -3,9 +3,13 @@ import {Card, Image} from 'react-bootstrap'
 import testPerfil from '../../Images/testperfil.webp'
 import { Link } from "react-router-dom";
 import { BiCommentDetail } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
 
 import Comments from './Comments';
 import MakeComment from './MakeComment';
+import CONSTANT from '../../helpers/constant'
+import { getJwt } from '../../helpers/jwt'
+import axios from 'axios';
 
 class Post extends Component {
     constructor() {
@@ -14,6 +18,24 @@ class Post extends Component {
             showComment: 0,
             comments: []
         }
+    }
+    deletePost = (e) => {
+        let {id} = this.props;
+        let url = CONSTANT.URL + "/api/user/deletePost/" + id;
+        const jwt = getJwt();
+        axios.delete(url,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            })
+        .then(res => {
+            this.props.updateUsuario();
+         }).catch(err => {
+            console.log(err);
+         });
+
     }
     getComments = (e) => {
         this.setState({
@@ -55,6 +77,10 @@ class Post extends Component {
                 <MakeComment imagen={testPerfil} idPost = {this.props.id}/>
             </React.Fragment>);
         } 
+        let eliminarPost = <div />;
+        if(this.props.myId === this.props.idUsuario) {
+            eliminarPost = <div onClick = {this.deletePost} style ={{"position": "absolute", "paddingLeft":"92%", "top": "1%"}} className = "text-danger"><AiFillDelete style={{"cursor": "pointer"}}/></div>
+        }
         return (
             <Card style = {{"marginBottom":"16px"}}>
                 <div className = "inline">
@@ -63,7 +89,10 @@ class Post extends Component {
                         <h5 className = "d-inline mt-1 ml-1 mb-0 small">{this.props.usuario}</h5>
                     </Link>
                 </div>
-                <Card.Body className="pt-0 pl-2 pb-2">{this.props.contenido}</Card.Body>
+            <Card.Body className="pt-0 pl-2 pb-2">
+                {eliminarPost}
+                {this.props.contenido}
+            </Card.Body>
                 {imagen(this.props.imagen)}
                 {commentsJsx}
             </Card>

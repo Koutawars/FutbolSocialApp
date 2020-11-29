@@ -6,6 +6,7 @@ import CONSTANT from '../../helpers/constant';
 import { getJwt } from '../../helpers/jwt';
 import axios from 'axios';
 class Main extends Component {
+    _isMounted = false;
     constructor(props){
         super(props);
         this.state = {
@@ -13,7 +14,9 @@ class Main extends Component {
             estado: 0
         }
     }
-    
+    componentDidMount(){
+        this._isMounted = true;
+    }
     componentDidUpdate(prevProps) {
         if(this.props !== prevProps){ 
             let url = CONSTANT.URL + "/api/user/getPostAllUsers";
@@ -25,27 +28,29 @@ class Main extends Component {
                     'Authorization': `Bearer ${jwt}`
                 }
             }).then(res => {
-                let postsArray = res.data.result;
-                if(postsArray.lenght !== 0){
-                    postsArray.map(post => {
-                        post.idUsuario = post.id;
-                        post.usuario = post.Usuario.nombres + " " + post.Usuario.apellidos;
-                        return post;
-                    })
-                    this.setState({
-                        ...this.state,
-                        postsArray,
-                        estado:1
-                    });
-                } else {
-                    this.setState({
-                        estado: 2
-                    })
+                if(this._isMounted){
+                    let postsArray = res.data.result;
+                    if(postsArray.lenght !== 0){
+                        postsArray.map(post => {
+                            post.idUsuario = post.id;
+                            post.usuario = post.Usuario.nombres + " " + post.Usuario.apellidos;
+                            return post;
+                        })
+                        this.setState({
+                            ...this.state,
+                            postsArray,
+                            estado:1
+                        });
+                    } else {
+                        this.setState({
+                            estado: 2
+                        })
+                    }
                 }
             });
         }
     }
-        render(){
+    render(){
         let posts = <div />;
         if(this.state.estado === 0) {
             posts = <div className="text-center text-primary mt-5"><Spinner animation="border" /></div>;

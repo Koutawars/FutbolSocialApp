@@ -4,6 +4,7 @@ import axios from 'axios';
 import { withRouter } from "react-router-dom";
 export default function (Componente){
     class AuthenticatedComponent extends Component {
+        _isMounted = false;
         constructor(props){
             super(props);
             this.state = {
@@ -15,6 +16,7 @@ export default function (Componente){
             }
         }
         componentDidMount() {
+            this._isMounted = true;
             const jwt = getJwt();
             if(!jwt){
                 this.props.history.push('/login');
@@ -27,7 +29,9 @@ export default function (Componente){
                 }
             } )
             .then(res => {
-                this.setState(res.data);
+                if (this._isMounted) {
+                    this.setState(res.data);
+                }
             }).catch(err => {
                 console.log(err);
                 localStorage.removeItem('jwt');

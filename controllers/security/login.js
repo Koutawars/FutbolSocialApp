@@ -44,7 +44,7 @@ var login = async (req, res) => {
     var token = jwt.sign(tokenData, CONSTANT.TOKENENCRIPTED, {
         expiresIn: 60 * 60 * 24 //expira en 24 hora
      })
-    res.json({ jwt: token});
+    res.json({ jwt: token, usuario: tokenData});
 };
 
 module.exports = login;
