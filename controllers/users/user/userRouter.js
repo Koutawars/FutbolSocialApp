@@ -13,6 +13,7 @@ const getPostAllUsers = require('./getPostAllUsers');
 const deletePost = require('./deletePost');
 const addComentario = require('./addComentario');
 const getPostAndComenst = require('./getPostAndComenst');
+const getCommentsPost = require('./getCommentsPost');
 
 //  [GET] http://localhost:5000/api/user/getFields
 router.get('/getFields', getFields);
@@ -51,6 +52,9 @@ router.post('/addComentario/:post_idpost',addComentario);
 
 // [get] http://localhost:5000/api/user/getPostAndComenst
 router.get('/getPostAndComenst/:post_idpost',getPostAndComenst);
+
+// [get] http://localhost:5000/api/user/comments/:idPost
+router.get('/comments/:idPost', getCommentsPost);
 
 
 module.exports = router;

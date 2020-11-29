@@ -11,7 +11,7 @@ module.exports = sequelize.define("Comentario", {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    usuario_id:{
+    idUsuario:{
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -19,6 +19,11 @@ module.exports = sequelize.define("Comentario", {
         type: Sequelize.STRING,
         allowNull: false
 
+    },
+    fecha: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     }
 },
 {

@@ -17,6 +17,7 @@ class MakeComment extends Component {
     comentar = (e) => {
         e.preventDefault();
         let idInput = "content" + this.props.idPost;
+        console.log(this.props);
         this.setState({
             [idInput]: ""
         });

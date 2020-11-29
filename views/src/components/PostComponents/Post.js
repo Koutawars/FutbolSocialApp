@@ -32,24 +32,41 @@ class Post extends Component {
             })
         .then(res => {
             this.props.updateUsuario();
-         }).catch(err => {
+        }).catch(err => {
             console.log(err);
-         });
-
+        });
     }
     getComments = (e) => {
         this.setState({
             showComment: 1
         });
         // cargar comentarios
-        let comments = [
-            {id:1, content: "Hola.", usuario: "Anderson Hernandez", idUsuario:2},
-            {id:2, content: "Hi.", usuario: "Carlos Campo", idUsuario:1},
-        ]
-        this.setState({
-            comments,
-            showComment: 2
-        })
+        let {id} = this.props;
+        let url = CONSTANT.URL + "/api/user/comments/" + id;
+        const jwt = getJwt();
+        axios.get(url,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            })
+        .then(res => {
+            let comments = res.data.comentarios;
+            comments.map((c) => {
+                c.idUsuario = c.Usuario.id;
+                c.usuario = c.Usuario.nombres + " " + c.Usuario.apellidos;
+                c.content = c.comentario;
+                c.Usuario = undefined;
+                return c;
+            });
+            this.setState({
+                comments,
+                showComment: 2
+            })
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     render(){
