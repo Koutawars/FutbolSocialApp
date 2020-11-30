@@ -95,7 +95,6 @@ class Post extends Component {
             </React.Fragment>);
         } 
         let eliminarPost = <div />;
-        console.log(this.props.myId, this.props.idUsuario);
         if(this.props.myId === this.props.idUsuario) {
             eliminarPost = <div style ={{"position": "absolute", "paddingLeft":"92%", "top": "1%"}} className = "text-danger"><AiFillDelete onClick = {this.deletePost} style={{"cursor": "pointer"}}/></div>
         }

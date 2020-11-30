@@ -8,7 +8,8 @@ class Posts extends Component {
         this.state = {
             usuario: getUsuario()
         }
-    }    render(){
+    }
+    render(){
         let {posts} = this.props;
         let listPosts = posts.map((post) => 
             <Post key = {post.id} {...post} myId = {this.state.usuario.id} updateUsuario = {this.props.updateUsuario}/>
