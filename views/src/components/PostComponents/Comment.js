@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 class Comment extends Component {
     render(){
         let url = "/perfil/" + this.props.idUsuario;
+        let imagen = this.props.imageUsuario? this.props.imageUsuario: testPerfil;
         return (
             <Row>
                 <Col xs="1">
                     <Link to = {url}  className="text-decoration-none">
-                        <Image className="pt-1 pl-2" style={{"width": "270%"}} src={testPerfil} roundedCircle />
+                        <Image className="pt-1 pl-2" style={{"width": "270%"}} src={imagen} roundedCircle />
                     </Link>
                 </Col>
                 <Col xs="11">
