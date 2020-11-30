@@ -14,7 +14,8 @@ const deletePost = require('./deletePost');
 const addComentario = require('./addComentario');
 const getPostAndComenst = require('./getPostAndComenst');
 const getCommentsPost = require('./getCommentsPost');
-
+const alquilerPosible = require('./alquilerPosible');
+const alquilar = require('./alquilar');
 //  [GET] http://localhost:5000/api/user/getFields
 router.get('/getFields', getFields);
 
@@ -55,6 +56,12 @@ router.get('/getPostAndComenst/:post_idpost',getPostAndComenst);
 
 // [get] http://localhost:5000/api/user/comments/:idPost
 router.get('/comments/:idPost', getCommentsPost);
+
+// [post] http://localhost:5000/api/user/alquilerPosible/:escenario_deportivo_id
+router.post('/alquilerPosible/:escenario_deportivo_id', alquilerPosible);
+
+// [post] http://localhost:5000/api/user/alquilar/:escenario_deportivo_id
+router.post('/alquilar/:escenario_deportivo_id', alquilar);
 
 
 module.exports = router;

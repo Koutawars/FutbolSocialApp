@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = sequelize.define("Alquiler", {
-    id: {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
