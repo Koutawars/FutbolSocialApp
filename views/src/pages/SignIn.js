@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Form, Col, Button, Row, Container} from 'react-bootstrap'; 
 import axios from 'axios';
 import CONSTANT from '../helpers/constant'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 class SignIn extends Component {
     
     componentDidMount() {
@@ -26,7 +29,11 @@ class SignIn extends Component {
         e.preventDefault();
         let url = CONSTANT.URL + "/api/register";
         axios.post(url, this.state).then(res => {
-            this.props.history.push('/login');
+            toast.success("¡Registrado con exito!", {
+                autoClose: 3000,
+                position: "bottom-left"
+            });
+            setTimeout(() => { this.props.history.push('/login'); }, 3000);
         }).catch((err) => {
             console.log(err.response.data.error);
         });
@@ -35,6 +42,7 @@ class SignIn extends Component {
     render(){
         return (
             <Container md="auto">
+                <ToastContainer />
                 <Row className="justify-content-md-center">
                     <Col xs lg="5">
                         <h4 className = "text-center">Registro</h4>

@@ -16,6 +16,11 @@ const getPostAndComenst = require('./getPostAndComenst');
 const getCommentsPost = require('./getCommentsPost');
 const alquilerPosible = require('./alquilerPosible');
 const alquilar = require('./alquilar');
+const getField = require('./getField');
+
+//  [GET] http://localhost:5000/api/user/getField/:id
+router.get('/getField/:id', getField);
+
 //  [GET] http://localhost:5000/api/user/getFields
 router.get('/getFields', getFields);
 

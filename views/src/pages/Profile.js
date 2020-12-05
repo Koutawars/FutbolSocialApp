@@ -12,7 +12,7 @@ class Profile extends Component {
         let {id} = this.props.match.params.id? this.props.match.params:this.props.data;
         return (
             <React.Fragment>
-                <Navbar></Navbar>
+                <Navbar saldo={this.props.data.saldo}></Navbar>
                 <Row>
                     <Col className="lex-xl-nowrap" xs ="2" sm="1" md="1" lg="3" >
                         <Menu></Menu>

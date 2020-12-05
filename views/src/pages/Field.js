@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import Navbar from '../components/Navbar'
 import {Col, Row} from 'react-bootstrap'
 import Menu from '../components/Menu'
-import Main from '../components/SearchComponents/Main'
-class Search extends Component {
+import Main from '../components/FieldComponents/MainOne'
+class Field extends Component {
+    componentDidMount() {
+        document.title = "Canchas";
+    }
     render(){
         return (
             <React.Fragment>
@@ -13,11 +16,13 @@ class Search extends Component {
                         <Menu></Menu>
                     </Col>
                     <Col xs="10" sm="11" md="11" lg ="9">
-                        <Main/>
+                        <Main {...this.props} />
                     </Col>
                 </Row>
             </React.Fragment>
         );
     }
 }
-export default Search;
+
+
+export default Field;

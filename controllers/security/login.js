@@ -38,7 +38,8 @@ var login = async (req, res) => {
         apellidos: buscado.apellidos,
         tipoId: buscado.tipo_usuario_id,
         correo: correo,
-        cedula: buscado.cedula
+        cedula: buscado.cedula,
+        saldo: buscado.saldo
         // MAS DATOS...
     }
     var token = jwt.sign(tokenData, CONSTANT.TOKENENCRIPTED, {
