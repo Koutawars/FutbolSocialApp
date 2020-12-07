@@ -5,5 +5,5 @@ $theme-colors: (
 
 @import '~bootstrap/scss/bootstrap.scss';
 body {
-  overflow: hidden
+  overflow-x: hidden;
 }
