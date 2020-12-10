@@ -79,6 +79,12 @@ class Main extends Component {
             [e.target.id]: e.target.value 
         });
     };
+    getISOStringWithoutSecsAndMillisecs1(date) {
+        const dateAndTime = date.toISOString().split('T')
+        const time = dateAndTime[1].split(':')
+        
+        return dateAndTime[0]+'T'+time[0]+':'+time[1]
+   }
     render(){
         const handleClose = () => this.setState({show:false, fecha_inicio: null, fecha_final: null});
         const handleShow = () => this.setState({show:true});
@@ -93,6 +99,7 @@ class Main extends Component {
             horas = Math.trunc(horas);
             jsx = <p>N°Horas: {horas} - Costo por ${valor}</p>;
         }
+        let fechaActual = this.getISOStringWithoutSecsAndMillisecs1(new Date);
         return(
             <>
                 <Row>
@@ -120,11 +127,11 @@ class Main extends Component {
                         <Modal.Body>
                             <Form.Group controlId="fecha_inicio">
                                 <Form.Label>Fecha inicio</Form.Label>
-                                <Form.Control onChange = {this.handleChange} type="datetime-local" name="fecha_inicio" placeholder="Date of Birth" />
+                                <Form.Control min={fechaActual} onChange = {this.handleChange} type="datetime-local" name="fecha_inicio" placeholder="Date of Birth" />
                             </Form.Group>
                             <Form.Group controlId="fecha_final">
                                 <Form.Label>Fecha final</Form.Label>
-                                <Form.Control onChange = {this.handleChange} type="datetime-local" name="fecha_final" placeholder="Date of Birth" />
+                                <Form.Control  min={fechaActual} onChange = {this.handleChange} type="datetime-local" name="fecha_final" placeholder="Date of Birth" />
                             </Form.Group>
                             {jsx}
                         </Modal.Body>
