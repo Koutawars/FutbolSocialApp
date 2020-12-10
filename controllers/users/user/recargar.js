@@ -1,17 +1,16 @@
 const Usuario = require('../../../models/Usuario');
 
-const updateUser = async (req, res) => {
+const recargar = async (req, res) => {
     let id =  req.tokenInfo.id;
-    let saldoA = req.body.saldoA; 
+    let saldo = req.body.saldo; 
     let usuario = await Usuario.findOne({
         where: { 
             id 
         }
-
     });
-    usuario.saldo = usuario.saldo+saldoA ;
+    usuario.saldo = usuario.saldo+parseInt(saldo);
     usuario.save();
     res.json({usuario});
 }
 
-module.exports = updateUser;
+module.exports = recargar;

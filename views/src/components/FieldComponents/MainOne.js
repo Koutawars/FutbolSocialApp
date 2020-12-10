@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Row, Image, Col, Button, Modal, Form} from 'react-bootstrap'
 import CONSTANT from '../../helpers/constant'
 import {withRouter} from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 import { getJwt } from '../../helpers/jwt';
@@ -42,7 +45,33 @@ class Main extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        
+        let id = this.props.match.params.id;
+        let url = CONSTANT.URL + "/api/user/alquilerPosible/" + id;
+        const jwt = getJwt();
+        axios.post(url, {
+            fecha_inicio: this.state.fecha_inicio, 
+            fecha_final: this.state.fecha_final
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`
+                }
+            })
+        .then(res => {
+            console.log("DATA: ", res.data);
+            this.setState({show:false, fecha_inicio: null, fecha_final: null});
+            this.props.updateSaldo(res.data.saldoActual);
+            toast.success("¡Escenario reservado!", {
+                autoClose: 3000,
+                position: "bottom-left"
+            });
+        }).catch(err => {
+            toast.error(err.response.data, {
+                autoClose: 3000,
+                position: "bottom-left"
+            });
+        });
 
     }
     handleChange = (e) => {
@@ -83,6 +112,7 @@ class Main extends Component {
                     </Col>
                     <Col xs="5">
                     </Col>
+                    <ToastContainer />
                     <Modal show={this.state.show} onHide={handleClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>Escoger fecha de alquilar</Modal.Title>

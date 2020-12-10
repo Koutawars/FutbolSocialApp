@@ -12,7 +12,8 @@ class NavbarComp extends Component {
         super();
         this.state = {
             show: false,
-            saldo: null
+            saldo: null,
+            saldoActual: null
         }
     }
     logOut= (e) => {
@@ -30,13 +31,19 @@ class NavbarComp extends Component {
         let textSearch = document.querySelector("#textSearch").value;
         this.props.history.push("/search?q="+ textSearch);
     }
+    componentDidMount() {
+        let usuario = JSON.parse(localStorage.getItem('usuario'));
+        let {saldo} = usuario;
+        this.setState({
+            saldoActual:saldo
+        })
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         if(this.state.saldo){
-            console.log(this.state.saldo);
-            let url = CONSTANT.URL + "/api/admin/field/add";
+            let url = CONSTANT.URL + "/api/user/recargar";
             const jwt = getJwt();
-            axios.post(url, this.state,
+            axios.post(url, {saldo: this.state.saldo},
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -45,13 +52,29 @@ class NavbarComp extends Component {
                 })
             .then(res => {
                 console.log("DATA: ", res.data);
+                let saldo = res.data.usuario.saldo;
+                let usuario = JSON.parse(localStorage.getItem('usuario'));
+                usuario.saldo = saldo;
+                usuario = JSON.stringify(usuario);
+                localStorage.setItem('usuario', usuario);
+                this.setState({
+                    saldoActual:saldo,
+                    show: false
+                });
             }).catch(err => {
                 console.log(err);
             });
         }
     }
+    componentDidUpdate(prevProps) {
+        if(prevProps.saldoActual !== this.props.saldoActual){
+            this.setState({
+                saldoActual: this.props.saldoActual
+            })
+        }
+    }
     render(){
-        let saldo = this.props.saldo? this.props.saldo: 0;
+        let saldo = this.state.saldoActual? this.state.saldoActual: this.props.saldo;
         const handleClose = () => this.setState({show:false});
         const handleShow = () => this.setState({show:true});
         return (

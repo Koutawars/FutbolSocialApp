@@ -33,6 +33,7 @@ const AlquilerResult = async (req, res) => {
         var hours = duration.asHours();
         console.log(hours);
         let precio = field.valor_hora * hours;
+        precio = Math.trunc(precio) + 1;
         let usuario = await Usuario.findOne({
             where: { 
                 id 
@@ -54,7 +55,7 @@ const AlquilerResult = async (req, res) => {
                 precio,
                 estado_alquiler_id
             })
-            res.json({alquiler});
+            res.json({alquiler, saldoActual: usuario.saldo});
         }else{
             res.status(402).send('¡Falta de creditos!');
         }
