@@ -26,6 +26,13 @@ class NavbarComp extends Component {
             [e.target.id]: e.target.value 
         });
     };
+
+    handleChangeSaldo = (e) => {
+        e.target.value  = e.target.value <= 0 ? e.target.value *-1:e.target.value; 
+        this.setState({
+            [e.target.id]: e.target.value 
+        });
+    };
     buscar= (e) => {
         e.preventDefault();
         let textSearch = document.querySelector("#textSearch").value;
@@ -40,7 +47,7 @@ class NavbarComp extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        if(this.state.saldo){
+        if(this.state.saldo > 0){
             let url = CONSTANT.URL + "/api/user/recargar";
             const jwt = getJwt();
             axios.post(url, {saldo: this.state.saldo},
@@ -77,6 +84,7 @@ class NavbarComp extends Component {
         let saldo = this.state.saldoActual != null ? this.state.saldoActual: this.props.saldo;
         const handleClose = () => this.setState({show:false});
         const handleShow = () => this.setState({show:true});
+
         return (
             <Navbar sticky="top" bg="light" expand="lg">
                 <Navbar.Brand href="/">Red social futbol</Navbar.Brand>
@@ -99,7 +107,7 @@ class NavbarComp extends Component {
                     <Modal.Body>
                         <Form.Group controlId="saldo">
                             <Form.Label>Saldo</Form.Label>
-                            <Form.Control onChange = {this.handleChange} type="number" placeholder="Ingrese el valor a recargar" />
+                            <Form.Control onChange = {this.handleChangeSaldo} type="number" placeholder="Ingrese el valor a recargar" />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
