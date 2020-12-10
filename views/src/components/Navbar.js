@@ -74,7 +74,7 @@ class NavbarComp extends Component {
         }
     }
     render(){
-        let saldo = this.state.saldoActual? this.state.saldoActual: this.props.saldo;
+        let saldo = this.state.saldoActual != null ? this.state.saldoActual: this.props.saldo;
         const handleClose = () => this.setState({show:false});
         const handleShow = () => this.setState({show:true});
         return (
