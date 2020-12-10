@@ -21,7 +21,7 @@ const AlquilerResult = async (req, res) => {
         } 
 
     });
-    if(alquiler1 ==null  ){
+    if(alquiler1 == null){
         let field = await Field.findOne({
             where: {
                 id
@@ -56,12 +56,10 @@ const AlquilerResult = async (req, res) => {
             })
             res.json({alquiler});
         }else{
-            res.json({alquiler1});
+            res.status(402).send('¡Falta de creditos!');
         }
-        
-
     }else{
-        res.json({alquiler1});
+        res.status(400 ).send('¡Cancha ocupada en ese rango fechas!');
     }
 }
 
