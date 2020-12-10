@@ -64,7 +64,7 @@ router.get('/getPostAndComenst/:post_idpost',getPostAndComenst);
 router.get('/comments/:idPost', getCommentsPost);
 
 // [post] http://localhost:5000/api/user/alquilerPosible/:escenario_deportivo_id
-router.post('/alquilerPosible/:escenario_deportivo_id', alquilerPosible);
+router.post('/alquilerPosible/:id', alquilerPosible);
 
 // [post] http://localhost:5000/api/user/alquilar/:escenario_deportivo_id
 router.post('/alquilar/:escenario_deportivo_id', alquilar);

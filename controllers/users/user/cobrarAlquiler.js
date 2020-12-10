@@ -6,7 +6,7 @@ const cobrarAlquiler = async (req, res) => {
     let field;
     /*
     field = await Field.update({
-        saldo=saldo-resta_saldo
+        saldo: saldo-resta_saldo
     }, {where: { [Op.and]: [{ id }, { saldo:{[Op.eq]: resta_saldo} }]}
 
     });
