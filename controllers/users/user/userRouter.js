@@ -17,7 +17,7 @@ const getCommentsPost = require('./getCommentsPost');
 const alquilerPosible = require('./alquilerPosible');
 const alquilar = require('./alquilar');
 const getField = require('./getField');
-const cobrarAlquiler = require('./cobrarAlquiler');
+const recargar = require('./recargar');
 
 //  [GET] http://localhost:5000/api/user/getField/:id
 router.get('/getField/:id', getField);
@@ -69,8 +69,9 @@ router.post('/alquilerPosible/:id', alquilerPosible);
 // [post] http://localhost:5000/api/user/alquilar/:escenario_deportivo_id
 router.post('/alquilar/:escenario_deportivo_id', alquilar);
 
-// [post] http://localhost:5000/api/user/cobrarAlquiler/:resta_saldo
-router.post('/cobrarAlquiler/:resta_saldo', alquilar);
+// [post] http://localhost:5000/api/user/recargar
+router.post('/recargar', recargar);
+
 
 
 module.exports = router;
